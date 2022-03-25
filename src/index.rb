@@ -5,14 +5,13 @@ require_relative './manager'
 require_relative './menuitem'
 require_relative './settingsinterface'
 require_relative './staff'
+require_relative './business'
 
 # Initialises first user in users array.
-users = [Manager.new('Admin', 'Password')]
+# users = [Manager.new('Admin', 'Password')]
 
-# Initialises interface
-interface = Interface.new
+# Initialise Business
+business = Business.new
+business.setup_pos
 
 # First time setup
-interface.set_cafe_name
-puts "Thank you #{interface.cafe_name} owner.\n We now need to setup the first user."
-

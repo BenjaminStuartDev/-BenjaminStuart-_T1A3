@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Top level documentation comment for 'class Staff'.
-class InvalidNameError < StandardError
-  def message
-    'Name must not be empty'
+class InvalidInputError < StandardError
+  def initialize(msg = 'Invalid Input')
+    super(msg)
   end
 end

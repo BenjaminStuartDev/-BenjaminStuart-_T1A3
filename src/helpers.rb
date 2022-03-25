@@ -4,18 +4,21 @@ require_relative './errors'
 
 # returns the user input while handling input errors and input confirmation.
 #
-# @param disconfirm_msg [String] A string contining the dis-confirm message to be displayed to the user.
-# @param &_block [block] A block containing raise errors and error messages to be displayed to the user.
+# @param data_name [String] A string containing the name of the data that is being requested.
+# @param *validators [Proc] A validation proc containing raise errors and error messages to be displayed to the user.
 #
 # @return A string conaining the user input [String]
-def get_user_input(disconfirm_msg, &_block)
+def get_user_input(data_name, *validators)
+  print "Please enter your #{data_name}: "
   begin
     user_input = gets.chomp
-    yield user_input if block_given?
+    validators.each do |validator|
+      validator.call(user_input, data_name)
+    end
 
     confirmation = get_confirmation("Is '#{user_input}' correct? (Y/N): ")
 
-    raise InvalidInputError, disconfirm_msg unless confirmation == 'Y'
+    raise InvalidInputError, "Please re-enter your #{data_name}: " unless confirmation == 'Y'
   rescue InvalidInputError => e
     print e.message
     retry

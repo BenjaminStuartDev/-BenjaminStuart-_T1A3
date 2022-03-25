@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './helpers'
+require './validators'
 
 describe '#get_user_input' do
   it 'Returns a string containing the user input' do
@@ -11,15 +12,9 @@ describe '#get_user_input' do
     allow(self).to receive(:gets).and_return('Blues Cafe', 'N', 'Reds Cafe', 'Y')
     expect(get_user_input('')).to eq('Reds Cafe')
   end
-  it 'Allows for a block to be passed in that raises an error' do
-    allow(self).to receive(:gets).and_return('', 'Blues Cafe', 'Y')
-    expect(
-      get_user_input('') do |something|
-        if something.empty?
-          raise InvalidInputError, "something item name must not be empty.\nPlease re-enter your something item: "
-        end
-      end
-    ).to eq('Blues Cafe')
+  it 'Allows for a proc to be passed in that handles an error and allows for user to retry' do
+    allow(self).to receive(:gets).and_return('', 'Reds Cafe', 'Y')
+    expect(get_user_input('', EmptyValidator)).to eq('Reds Cafe')
   end
 end
 

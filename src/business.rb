@@ -3,50 +3,64 @@
 require_relative './staff'
 require_relative './errors'
 require_relative './helpers'
+require_relative './validators'
 
-# Top level documentation comment for 'class Staff'.
+# The Business class represents the cafe.
 class Business
-  attr_reader :cafe_name
+  attr_reader :cafe_name, :staff
 
   def initialize
     @cafe_name = nil
     @staff = []
-    # set_staff
+    @menu_items = [] # Name, Price, ingredients_arr
   end
 
-  # Prompts the user to input
+  # Initialises the POS system by prompting the user to set up their business.
+  # Adds cafe_name to Business, adds staff to Business and adds menu items to Business.
   def setup_pos
-    print "Hello and thank you for using Cafe POS V1! \nTo begin, please input the name of your cafe: "
+    print "Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n"
     @cafe_name = Business.get_cafe_name
-    confirmation = get_confirmation('Would you like to add new users to the POS? (Y/N) : ')
-    puts 'confirmation' if confirmation == 'Y'
+    add_staff_prompt
+    print @staff
+  end
+
+  # Prompts the user to create a new staff member and updates global @staff array.
+  def add_staff_prompt
+    loop do
+      response = get_confirmation('Would you like to add a new user to the POS? (Y/N): ')
+      break if response == 'N'
+
+      @staff << create_staff
+    end
+  end
+
+  # Creates a new Staff object using user input for name and password
+  #
+  # @return staff member object [Staff]
+  def create_staff
+    name = get_user_input('staff members name', EmptyValidator)
+    password = get_user_input('staff members password', EmptyValidator)
+    return Staff.new(name, password)
+  end
+
+  # Returns the user input for menu item
+  #
+  # @return menu item name [String]
+  def get_menu_item
+    print 'Please enter your menu item name: '
+    return get_user_input('Please re-enter your menu-item name: ') do |menu_item|
+      if menu_item.empty?
+        raise InvalidInputError, "Menu item name must not be empty.\nPlease re-enter your menu item name: "
+      end
+    end
   end
 
   class << self
-    # requests user input for to assaign variable cafe_name
+    # requests user input to assaign variable cafe_name
     #
     # @return cafe_name [String]
     def get_cafe_name
-      return get_user_input('Please re-enter your cafe name: ') do |menu_item|
-        raise InvalidInputError, "Cafe name must not be empty.\nPlease re-enter your cafe name: " if menu_item.empty?
-      end
-    end
-
-    def set_staff
-      print 'What is the name of the staff member: '
-      username = gets
-      print 'What is the password for the new user: '
-      password = gets
-      puts "The username is #{username} and the password is #{password} would you like to retry? (Y/N) : "
-      response = gets.chomp
-      set_staff if response&.upcase == 'N'
+      return get_user_input('Cafe name', EmptyValidator)
     end
   end
 end
-# def add_user(name, password)
-#   return Staff.new(name, password)
-# end
-
-# def new_user_prompt
-#   print 'Please enter the '
-# end

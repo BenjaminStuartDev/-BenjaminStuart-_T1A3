@@ -2,6 +2,7 @@
 
 require './business'
 require './staff'
+require './menuitems'
 
 describe Business do
   let(:business) { Business.new }

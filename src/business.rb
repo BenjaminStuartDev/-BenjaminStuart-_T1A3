@@ -4,6 +4,7 @@ require_relative './staff'
 require_relative './errors'
 require_relative './helpers'
 require_relative './validators'
+require_relative './menuitems'
 
 # The Business class represents the cafe.
 class Business
@@ -22,6 +23,7 @@ class Business
     @cafe_name = Business.get_cafe_name
     add_staff_prompt
     print @staff
+    menu_setup
   end
 
   # Prompts the user to create a new staff member and updates global @staff array.
@@ -46,13 +48,29 @@ class Business
   # Returns the user input for menu item
   #
   # @return menu item name [String]
-  def get_menu_item
-    print 'Please enter your menu item name: '
-    return get_user_input('Please re-enter your menu-item name: ') do |menu_item|
-      if menu_item.empty?
-        raise InvalidInputError, "Menu item name must not be empty.\nPlease re-enter your menu item name: "
-      end
+  def menu_setup
+    loop do
+      response = get_confirmation('Would you like to add a new menu item to the POS? (Y/N): ')
+      break if response == 'N'
+
+      @menu_items << create_menu_item
     end
+  end
+
+  # Creates a new menu_item object using user input for name, price and ingredients
+  #
+  # @return menu item object [MenuItem]
+  def create_menu_item
+    name = get_user_input('menu items name', EmptyValidator)
+    price = Float(get_user_input('menu items price', EmptyValidator, NumberValidator))
+    ingredients = []
+    loop do
+      response = get_confirmation('Would you like to add an ingredient to ingredients list (Y/N): ')
+      break if response == 'N'
+
+      ingredients << get_user_input('ingredient name', EmptyValidator)
+    end
+    return MenuItem.new(name, price, ingredients)
   end
 
   class << self

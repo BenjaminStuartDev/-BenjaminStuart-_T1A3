@@ -42,15 +42,3 @@ def get_confirmation(input)
   end
   return confirmation
 end
-
-# Returns the user input for menu item
-#
-# @return menu item name [String]
-def get_menu_item
-  print 'Please enter your menu item name: '
-  return get_user_input('Please re-enter your menu-item name: ') do |menu_item|
-    if menu_item.empty?
-      raise InvalidInputError, "Menu item name must not be empty.\nPlease re-enter your menu item name: "
-    end
-  end
-end

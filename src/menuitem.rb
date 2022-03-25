@@ -3,8 +3,8 @@
 require_relative './helpers'
 
 # Top level documentation comment for 'class Staff'.
-class Staff
-  attr_reader :name, :password
+class MenuItem
+  attr_reader :name, :price, :ingredients
 
   def initialize(name, price, ingredients)
     @name = name

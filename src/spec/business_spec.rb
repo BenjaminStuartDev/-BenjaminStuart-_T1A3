@@ -10,23 +10,10 @@ describe Business do
     expect(business).to be_an_instance_of Business
   end
 
-  describe '.set_cafe_name' do
-    it 'sets @cafe_name' do
-      allow(business).to receive(:gets).and_return('Blues Cafe', 'Y')
-      business.set_cafe_name
-      expect(business.cafe_name).to eq('Blues Cafe')
-    end
-
-    it 'allows for @cafe_name confirmation' do
-      allow(business).to receive(:gets).and_return('Blues Cafe', 'N', 'Reds Cafe', 'Y')
-      business.set_cafe_name
-      expect(business.cafe_name).to eq('Reds Cafe')
-    end
-
-    it 'does not allow empty @cafe_name' do
-      allow(business).to receive(:gets).and_return('', 'Blues Cafe', 'Y')
-      business.set_cafe_name
-      expect(business.cafe_name).to eq('Blues Cafe')
+  describe '#get_cafe_name' do
+    it 'returns cafe_name based on user input' do
+      allow(Business).to receive(:gets).and_return('Blues Cafe', 'Y')
+      expect(Business.get_cafe_name).to eq('Blues Cafe')
     end
   end
 end

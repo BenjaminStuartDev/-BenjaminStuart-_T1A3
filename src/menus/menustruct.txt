@@ -1,0 +1,28 @@
+
+tables = [
+  {
+    orders: [
+      {},
+      {},
+      {}
+    ]
+  },
+  {
+    orders: [
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  {
+    orders: [
+      {},
+      {}
+    ]
+  }
+]
+
+table_list_menu = TableListMenu.new(tables)
+table_list_menu.run

@@ -5,18 +5,20 @@ require_relative './errors'
 require_relative './helpers'
 require_relative './validators'
 require_relative './menuitem'
+require_relative './table'
 require 'json'
 require 'fileutils'
 require 'tty-prompt'
 
 # The Business class represents the cafe.
 class Business
-  attr_reader :cafe_name, :staff, :menu_items
+  attr_reader :cafe_name, :staff, :menu_items, :tables
 
   def initialize
     @cafe_name = nil
     @staff = []
     @menu_items = []
+    @tables = []
   end
 
   # Initialises the POS system by prompting the user to set up their business.
@@ -26,12 +28,14 @@ class Business
     @cafe_name = Business.get_cafe_name
     prompt = TTY::Prompt.new
     loop do
-      response = prompt.select('What would you like to do?', ['Add Staff', 'Add Menu Item', 'Continue'])
+      response = prompt.select('What would you like to do?', ['Add Staff', 'Add Menu Item', 'Set tables', 'Continue'])
       case response
       when 'Add Staff'
         add_staff
       when 'Add Menu Item'
         add_menu_item
+      when 'Set tables'
+        tables_setup
       when 'Continue'
         break
       end
@@ -76,6 +80,14 @@ class Business
     return MenuItem.new(name, price, ingredients)
   end
 
+  def tables_setup
+    tables = Integer(get_user_input('number of tables', EmptyValidator, NumberValidator))
+    until tables.zero?
+      @tables << Table.new(tables, [])
+      tables += -1
+    end
+  end
+
   # creates new .json savefile inside of the chosen directory
   #
   # @param path [String] a string containing the filepath for the savefile
@@ -93,7 +105,8 @@ class Business
     if File.exist?(path) == false
       create_save(path)
     else
-      information = { cafe_name: @cafe_name, staff: @staff.map(&:to_h), menu_item: @menu_items.map(&:to_h) }
+      information = { cafe_name: @cafe_name, staff: @staff.map(&:to_h), menu_items: @menu_items.map(&:to_h),
+                      tables: @tables.map(&:to_h) }
       File.write(path, JSON.pretty_generate(information))
     end
   end
@@ -102,6 +115,19 @@ class Business
     return unless File.exist?(path)
 
     parsed = JSON.load_file(path, symbolize_names: true)
+    @cafe_name = parsed[:cafe_name]
+    staff_arr = parsed[:staff]
+    staff_arr.each do |staff|
+      @staff << Staff.new(staff[:name], staff[:password])
+    end
+    menuitems_arr = parsed[:menu_item]
+    menuitems_arr.each do |menu_item|
+      @menu_items << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
+    end
+    tables_arr = parsed[:tables]
+    tables_arr.each do |table|
+      @tables << Table.new(table[:table_num], table[:orders])
+    end
   end
 
   class << self

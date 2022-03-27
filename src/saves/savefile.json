@@ -1,0 +1,110 @@
+{
+  "cafe_name": "Hogwarts",
+  "staff": [
+    {
+      "name": "Harry",
+      "password": "Voldemort"
+    },
+    {
+      "name": "Hermione",
+      "password": "Aloha"
+    },
+    {
+      "name": "Ron",
+      "password": "Wormtail"
+    }
+  ],
+  "menu_item": [
+    {
+      "name": "Butter beer",
+      "price": 5.5,
+      "ingredients": [
+        "Butter",
+        "Beer",
+        "Magic"
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "table_num": 20,
+      "orders": []
+    },
+    {
+      "table_num": 19,
+      "orders": []
+    },
+    {
+      "table_num": 18,
+      "orders": []
+    },
+    {
+      "table_num": 17,
+      "orders": []
+    },
+    {
+      "table_num": 16,
+      "orders": []
+    },
+    {
+      "table_num": 15,
+      "orders": []
+    },
+    {
+      "table_num": 14,
+      "orders": []
+    },
+    {
+      "table_num": 13,
+      "orders": []
+    },
+    {
+      "table_num": 12,
+      "orders": []
+    },
+    {
+      "table_num": 11,
+      "orders": []
+    },
+    {
+      "table_num": 10,
+      "orders": []
+    },
+    {
+      "table_num": 9,
+      "orders": []
+    },
+    {
+      "table_num": 8,
+      "orders": []
+    },
+    {
+      "table_num": 7,
+      "orders": []
+    },
+    {
+      "table_num": 6,
+      "orders": []
+    },
+    {
+      "table_num": 5,
+      "orders": []
+    },
+    {
+      "table_num": 4,
+      "orders": []
+    },
+    {
+      "table_num": 3,
+      "orders": []
+    },
+    {
+      "table_num": 2,
+      "orders": []
+    },
+    {
+      "table_num": 1,
+      "orders": []
+    }
+  ]
+}

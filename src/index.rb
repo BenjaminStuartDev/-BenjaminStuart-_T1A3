@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative './interface'
 require_relative './manager'
 require_relative './menuitem'
 require_relative './settingsinterface'
@@ -12,9 +11,17 @@ require 'tty-prompt'
 # users = [Manager.new('Admin', 'Password')]
 
 # Initialise Business
+save_path = './saves/savefile.json'
 business = Business.new
-business.setup_pos
-print business.load_save('./saves/savefile.json')
+if File.exist?(save_path) == false
+  business.setup_pos
+else
+  business.load_save(save_path)
+end
+print business.cafe_name
+print business.staff
+print business.tables
+print business.menu_items
 
 # First time setup
 

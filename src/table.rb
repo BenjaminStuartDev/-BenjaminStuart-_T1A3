@@ -7,6 +7,12 @@ class Table
   end
 
   def to_h
-    return { table_num: @table_num, orders: @orders }
+    orders = []
+    unless @orders.empty?
+      @orders.each do |menu_item|
+        orders << { name: menu_item.name, price: menu_item.price, ingredients: menu_item.ingredients }
+      end
+    end
+    return { table_num: @table_num, orders: orders }
   end
 end

@@ -126,6 +126,11 @@ class Business
     end
     tables_arr = parsed[:tables]
     tables_arr.each do |table|
+      orders = []
+      table[:orders].each do |menu_item|
+        orders << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
+      end
+
       @tables << Table.new(table[:table_num], table[:orders])
     end
   end

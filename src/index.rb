@@ -6,6 +6,7 @@ require_relative './settingsinterface'
 require_relative './staff'
 require_relative './business'
 require 'tty-prompt'
+require_relative './menus/main_menu'
 
 # Initialises first user in users array.
 # users = [Manager.new('Admin', 'Password')]
@@ -18,6 +19,10 @@ if File.exist?(save_path) == false
 else
   business.load_save(save_path)
 end
+
+main_menu = MainMenu.new(business)
+main_menu.run
+
 print business.cafe_name
 print business.staff
 print business.tables

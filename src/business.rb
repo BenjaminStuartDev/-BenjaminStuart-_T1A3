@@ -25,20 +25,22 @@ class Business
     print "Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n"
     @cafe_name = Business.get_cafe_name
     prompt = TTY::Prompt.new
-    response = prompt.select('What would you like to do?', ['Add Staff', 'Add Menu Item', 'Continue'])
-    case response
-    when 'Add Staff'
-      add_staff_prompt
-    when 'Add Menu Item'
-      menu_setup
-    when 'Continue'
-      # !!!!! Need something
+    loop do
+      response = prompt.select('What would you like to do?', ['Add Staff', 'Add Menu Item', 'Continue'])
+      case response
+      when 'Add Staff'
+        add_staff
+      when 'Add Menu Item'
+        add_menu_item
+      when 'Continue'
+        break
+      end
     end
     create_save('./saves/savefile.json')
   end
 
   # Prompts the user to create a new staff member and updates global @staff array.
-  def add_staff_prompt
+  def add_staff
     @staff << create_staff
   end
 
@@ -54,13 +56,8 @@ class Business
   # Returns the user input for menu item
   #
   # @return menu item name [String]
-  def menu_setup
-    loop do
-      response = get_confirmation('Would you like to add a new menu item to the POS? (Y/N): ')
-      break if response == 'N'
-
-      @menu_items << create_menu_item
-    end
+  def add_menu_item
+    @menu_items << create_menu_item
   end
 
   # Creates a new menu_item object using user input for name, price and ingredients

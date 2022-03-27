@@ -6,7 +6,8 @@ require_relative './place_order_menu'
 
 # takes orders as an array containing menuitem objects
 class OrderListMenu < Menu
-  def initialize(table)
+  def initialize(table, business)
+    @business = business
     options = table.orders.map do |menuitem|
       { name: menuitem.name, value: menuitem.name }
     end
@@ -28,7 +29,7 @@ class OrderListMenu < Menu
 
   def handle_selection(order_num)
     return :break if order_num == :break
-
-    puts order_num
+    menu = PlaceOrderMenu.new(@business)
+    menu.run
   end
 end

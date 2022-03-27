@@ -5,6 +5,7 @@ require_relative './menu'
 # require_relative './settingsmenu'
 require_relative './table_list_menu'
 
+# top level documentation
 class MainMenu < Menu
   def initialize(business)
     super('Main Menu', [
@@ -18,7 +19,7 @@ class MainMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    table_list_menu = TableListMenu.new(@business.tables)
+    table_list_menu = TableListMenu.new(@business.tables, @business)
     table_list_menu.run
   end
 end

@@ -12,7 +12,7 @@ class Menu
 
   def run
     loop do
-      selection = @prompt.select(@menu_name, @options)
+      selection = @prompt.select(@menu_name, @options, cycle: true, filter: true)
       break if handle_selection(selection) == :break
     end
   end

@@ -8,14 +8,19 @@ require_relative './place_order_menu'
 class OrderListMenu < Menu
   def initialize(table, business)
     @business = business
-    options = table.orders.map do |menuitem|
-      { name: menuitem.name, value: menuitem.name }
+    @table = table
+    options = create_options
+    super("Table #{table.table_num} Orders", options)
+  end
+
+  def create_options
+    options = @table.orders.map do |menuitem|
+      { name: menuitem.name, value: menuitem.name, disabled: '' }
     end
     options << { name: 'Back', value: :break }
     options.unshift({ name: 'Place new order', value: :new_order })
-    bill_total = sum_bill(table.orders)
+    bill_total = sum_bill(@table.orders)
     options.unshift({ name: "Bill total: $#{bill_total}", value: nil, disabled: '' })
-    super("Table #{table.table_num} Orders", options)
   end
 
   # returns bill_total and iterates of order which is an array of menu_items
@@ -27,9 +32,11 @@ class OrderListMenu < Menu
     return bill_total
   end
 
-  def handle_selection(order_num)
-    return :break if order_num == :break
-    menu = PlaceOrderMenu.new(@business)
+  def handle_selection(selection)
+    return :break if selection == :break
+
+    menu = PlaceOrderMenu.new(@table, @business)
     menu.run
+    @options = create_options # This is to ensure it recalculates bill total after items have been added to the table orders
   end
 end

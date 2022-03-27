@@ -2,7 +2,7 @@
 
 require 'tty-prompt'
 require_relative './menu'
-# require_relative './settingsmenu'
+require_relative './settings_menu'
 require_relative './table_list_menu'
 
 # top level documentation
@@ -19,7 +19,11 @@ class MainMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    table_list_menu = TableListMenu.new(@business.tables, @business)
+    if selection == 'viewtables'
+      table_list_menu = TableListMenu.new(@business.tables, @business)
+    else
+      table_list_menu = SettingsMenu.new(@business)
+    end
     table_list_menu.run
   end
 end

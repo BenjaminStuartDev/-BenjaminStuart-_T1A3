@@ -10,6 +10,7 @@ class ViewMenuItemMenu < Menu
     @table = table
     @menu_item = menu_item
     options = [
+      { name: "price: $#{menu_item.price}", value: 'price', disabled: '' },
       { name: "Add #{menu_item.name} to order?", value: 'Add menu item' },
       { name: "View #{menu_item.name} ingredients?", value: 'ingredients' },
       { name: 'Back', value: :break }

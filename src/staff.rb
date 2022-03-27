@@ -15,6 +15,10 @@ class Staff
     return @name == other.name && @password == other.password
   end
 
+  def to_h
+    return { name: @name, password: @password }
+  end
+
   # class << self
   #   # def load_users(file_path)
   #   # end

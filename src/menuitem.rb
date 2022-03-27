@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './helpers'
+require './helpers'
 
 # Top level documentation comment for 'class Staff'.
 class MenuItem
@@ -10,5 +10,13 @@ class MenuItem
     @name = name
     @price = price
     @ingredients = ingredients
+  end
+
+  def ==(other)
+    return @name == other.name && @price == other.price && @ingredients == other.ingredients
+  end
+
+  def to_h
+    return { name: @name, price: @price, ingredients: @ingredients }
   end
 end

@@ -2,7 +2,6 @@
 
 require './business'
 require './staff'
-require './menuitems'
 
 describe Business do
   let(:business) { Business.new }
@@ -19,7 +18,8 @@ describe Business do
       expect(business.staff).to eq([Staff.new('John', 'Password')])
     end
     it 'Allows multiple staff to be added at the same time' do
-      allow(business).to receive(:gets).and_return('Y', 'John', 'Y', 'Password1', 'Y', 'Y', 'Wick', 'Y', 'Password2', 'Y', 'N')
+      allow(business).to receive(:gets).and_return('Y', 'John', 'Y', 'Password1', 'Y', 'Y', 'Wick', 'Y', 'Password2',
+                                                   'Y', 'N')
       business.add_staff_prompt
       expect(business.staff).to eq([Staff.new('John', 'Password1'), Staff.new('Wick', 'Password2')])
     end
@@ -41,6 +41,21 @@ describe Business do
     it 'returns cafe_name based on user input' do
       allow(Business).to receive(:gets).and_return('Blues Cafe', 'Y')
       expect(Business.get_cafe_name).to eq('Blues Cafe')
+    end
+  end
+
+  describe '#menu_setup' do
+    it 'pushes a new MenuItem object to the global menu_items array' do
+      allow(business).to receive(:gets).and_return('Y', 'foodname', 'Y', '10', 'Y', 'Y', 'ingredient1', 'Y', 'Y', 'ingredient2', 'Y', 'N', 'N')
+      business.menu_setup
+      expect(business.menu_items).to eq([MenuItem.new('foodname', 10.0, %w[ingredient1 ingredient2])])
+    end
+  end
+
+  describe '#create_menu_item' do
+    it 'returns a MenuItem object with foodname [String], price [Float] and ingredients [Array]' do
+      allow(business).to receive(:gets).and_return('foodname', 'Y', '10', 'Y', 'Y', 'ingredient1', 'Y', 'Y', 'ingredient2', 'Y', 'N')
+      expect(business.create_menu_item).to eq(MenuItem.new('foodname', 10.0, %w[ingredient1 ingredient2]))
     end
   end
 end

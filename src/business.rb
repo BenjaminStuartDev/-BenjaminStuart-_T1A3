@@ -4,16 +4,19 @@ require_relative './staff'
 require_relative './errors'
 require_relative './helpers'
 require_relative './validators'
-require_relative './menuitems'
+require_relative './menuitem'
+require 'json'
+require 'fileutils'
+require 'tty-prompt'
 
 # The Business class represents the cafe.
 class Business
-  attr_reader :cafe_name, :staff
+  attr_reader :cafe_name, :staff, :menu_items
 
   def initialize
     @cafe_name = nil
     @staff = []
-    @menu_items = [] # Name, Price, ingredients_arr
+    @menu_items = []
   end
 
   # Initialises the POS system by prompting the user to set up their business.
@@ -21,19 +24,22 @@ class Business
   def setup_pos
     print "Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n"
     @cafe_name = Business.get_cafe_name
-    add_staff_prompt
-    print @staff
-    menu_setup
+    prompt = TTY::Prompt.new
+    response = prompt.select('What would you like to do?', ['Add Staff', 'Add Menu Item', 'Continue'])
+    case response
+    when 'Add Staff'
+      add_staff_prompt
+    when 'Add Menu Item'
+      menu_setup
+    when 'Continue'
+      # !!!!! Need something
+    end
+    create_save('./saves/savefile.json')
   end
 
   # Prompts the user to create a new staff member and updates global @staff array.
   def add_staff_prompt
-    loop do
-      response = get_confirmation('Would you like to add a new user to the POS? (Y/N): ')
-      break if response == 'N'
-
-      @staff << create_staff
-    end
+    @staff << create_staff
   end
 
   # Creates a new Staff object using user input for name and password
@@ -61,16 +67,44 @@ class Business
   #
   # @return menu item object [MenuItem]
   def create_menu_item
-    name = get_user_input('menu items name', EmptyValidator)
-    price = Float(get_user_input('menu items price', EmptyValidator, NumberValidator))
+    name = get_user_input('menu item name', EmptyValidator)
+    price = Float(get_user_input('menu item price', EmptyValidator, NumberValidator))
     ingredients = []
     loop do
-      response = get_confirmation('Would you like to add an ingredient to ingredients list (Y/N): ')
+      response = get_confirmation('Would you like to add an ingredient to the menu items ingredients (Y/N): ')
       break if response == 'N'
 
       ingredients << get_user_input('ingredient name', EmptyValidator)
     end
     return MenuItem.new(name, price, ingredients)
+  end
+
+  # creates new .json savefile inside of the chosen directory
+  #
+  # @param path [String] a string containing the filepath for the savefile
+  def create_save(path)
+    dir = File.dirname(path)
+    FileUtils.mkdir_p(dir) unless File.directory?(dir)
+    File.new(path, 'w')
+    save(path)
+  end
+
+  # saves cafe name, staff array and menu items array inside of a json file at the specified path.
+  #
+  # @param path [String] a string containing the filepath for the savefile
+  def save(path)
+    if File.exist?(path) == false
+      create_save(path)
+    else
+      information = { cafe_name: @cafe_name, staff: @staff.map(&:to_h), menu_item: @menu_items.map(&:to_h) }
+      File.write(path, JSON.pretty_generate(information))
+    end
+  end
+
+  def load_save(path)
+    return unless File.exist?(path)
+
+    parsed = JSON.load_file(path, symbolize_names: true)
   end
 
   class << self

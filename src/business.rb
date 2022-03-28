@@ -112,6 +112,9 @@ class Business
     end
   end
 
+  # loads the cafe name, staff array, tables array and menu items array from the 'path' into memory
+  #
+  # @param path [String] a string containing the filepath to load the save from
   def load_save(path)
     return unless File.exist?(path)
 
@@ -136,6 +139,9 @@ class Business
     end
   end
 
+  # sets the cafe name to new_name
+  #
+  # @param new_name [String] a string containing the new name of the cafe
   def change_cafe_name(new_name)
     @cafe_name = new_name
   end

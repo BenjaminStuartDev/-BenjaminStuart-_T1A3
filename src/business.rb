@@ -81,6 +81,7 @@ class Business
   end
 
   def tables_setup
+    @tables = []
     tables = Integer(get_user_input('number of tables', EmptyValidator, NumberValidator))
     until tables.zero?
       @tables << Table.new(tables, [])
@@ -133,6 +134,10 @@ class Business
 
       @tables << Table.new(table[:table_num], table[:orders])
     end
+  end
+
+  def change_cafe_name(new_name)
+    @cafe_name = new_name
   end
 
   class << self

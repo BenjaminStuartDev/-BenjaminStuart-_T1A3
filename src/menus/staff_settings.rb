@@ -22,7 +22,8 @@ class StaffSettings < Menu
     if selection == 'View Staff'
       menu = ViewStaffMenu.new(@business)
     else
-      raise NotImplementedError, 'handle_selection must be implmenented'
+      @business.add_staff
+      return :break
     end
     menu.run
   end

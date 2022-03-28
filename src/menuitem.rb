@@ -19,4 +19,20 @@ class MenuItem
   def to_h
     return { name: @name, price: @price, ingredients: @ingredients }
   end
+
+  def add_ingredients(ingredients)
+    @ingredients += ingredients
+  end
+
+  def remove_ingredient(ingredient)
+    @ingredients.delete(ingredient)
+  end
+
+  def change_name(new_name)
+    @name = new_name
+  end
+
+  def change_price(new_price)
+    @price = new_price
+  end
 end

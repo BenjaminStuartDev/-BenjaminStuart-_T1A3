@@ -3,6 +3,8 @@
 require 'tty-prompt'
 require_relative './menu'
 require_relative './staff_settings'
+require_relative './menu_item_settings_menu'
+require_relative './business_settings_menu'
 
 # top level documentation
 class SettingsMenu < Menu
@@ -20,7 +22,14 @@ class SettingsMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    menu = StaffSettings.new(@business)
+    case selection
+    when 'Staff Settings'
+      menu = StaffSettings.new(@business)
+    when 'Menu Item Settings'
+      menu = MenuItemSettingsMenu.new(@business)
+    else
+      menu = BusinessSettingsMenu.new(@business)
+    end
     menu.run
   end
 end

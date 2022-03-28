@@ -2,6 +2,7 @@
 
 require 'tty-prompt'
 require_relative './menu'
+require_relative './view_staff_menu'
 
 # top level documentation
 class StaffSettings < Menu
@@ -17,8 +18,12 @@ class StaffSettings < Menu
 
   def handle_selection(selection)
     return :break if selection == :break
-    
-    # menu = []
-    # menu.run
+
+    if selection == 'View Staff'
+      menu = ViewStaffMenu.new(@business)
+    else
+      raise NotImplementedError, 'handle_selection must be implmenented'
+    end
+    menu.run
   end
 end

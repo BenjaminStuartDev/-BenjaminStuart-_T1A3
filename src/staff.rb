@@ -19,6 +19,14 @@ class Staff
     return { name: @name, password: @password }
   end
 
+  def change_name(new_name)
+    @name = new_name
+  end
+
+  def change_password(new_password)
+    @password = new_password
+  end
+
   # class << self
   #   # def load_users(file_path)
   #   # end

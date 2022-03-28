@@ -20,8 +20,11 @@ else
   business.load_save(save_path)
 end
 
+Menu.business = business
+
 main_menu = MainMenu.new(business)
 main_menu.run
+
 
 print business.cafe_name
 print business.staff

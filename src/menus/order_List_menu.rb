@@ -7,8 +7,7 @@ require './menuitem'
 
 # takes orders as an array containing menuitem objects
 class OrderListMenu < Menu
-  def initialize(table, business)
-    @business = business
+  def initialize(table)
     @table = table
     options = create_options
     super("Table #{table.table_num} Orders", options)
@@ -39,7 +38,7 @@ class OrderListMenu < Menu
     if selection.is_a?(MenuItem)
       menu = ViewMenuItemMenu.new(@table, selection)
     else
-      menu = PlaceOrderMenu.new(@table, @business)
+      menu = PlaceOrderMenu.new(@table)
     end
     menu.run
     @options = create_options # This is to ensure it recalculates bill total after items have been added to the table orders

@@ -22,7 +22,7 @@ end
 
 Menu.business = business
 
-main_menu = MainMenu.new(business)
+main_menu = MainMenu.new
 main_menu.run
 
 

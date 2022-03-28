@@ -8,8 +8,7 @@ require_relative './business_settings_menu'
 
 # top level documentation
 class SettingsMenu < Menu
-  def initialize(business)
-    @business = business
+  def initialize
     options = [
       { name: 'Staff Settings', value: 'Staff Settings' },
       { name: 'Menu Item Settings', value: 'Menu Item Settings' },
@@ -24,11 +23,11 @@ class SettingsMenu < Menu
 
     case selection
     when 'Staff Settings'
-      menu = StaffSettings.new(@business)
+      menu = StaffSettings.new
     when 'Menu Item Settings'
-      menu = MenuItemSettingsMenu.new(@business)
+      menu = MenuItemSettingsMenu.new
     else
-      menu = BusinessSettingsMenu.new(@business)
+      menu = BusinessSettingsMenu.new
     end
     menu.run
   end

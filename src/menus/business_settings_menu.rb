@@ -7,8 +7,7 @@ require_relative './table_list_menu'
 
 # top level documentation
 class BusinessSettingsMenu < Menu
-  def initialize(business)
-    @business = business
+  def initialize
     options = [
       { name: 'Change Name', value: 'Change Name' },
       { name: 'Change No. Tables', value: 'Change No. Tables' },
@@ -24,11 +23,11 @@ class BusinessSettingsMenu < Menu
     case selection
     when 'Change Name'
       new_name = get_user_input('Cafe name', EmptyValidator)
-      @business.change_cafe_name(new_name)
+      @@business.change_cafe_name(new_name)
     when 'Change No. Tables'
-      @business.tables_setup
+      @@business.tables_setup
     else
-      @business.setup_pos
+      @@business.setup_pos
     end
   end
 end

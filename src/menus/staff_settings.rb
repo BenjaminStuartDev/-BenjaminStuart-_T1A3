@@ -6,8 +6,7 @@ require_relative './view_staff_menu'
 
 # top level documentation
 class StaffSettings < Menu
-  def initialize(business)
-    @business = business
+  def initialize
     options = [
       { name: 'View Staff', value: 'View Staff' },
       { name: 'Add Staff', value: 'Add Staff' },
@@ -20,9 +19,9 @@ class StaffSettings < Menu
     return :break if selection == :break
 
     if selection == 'View Staff'
-      menu = ViewStaffMenu.new(@business)
+      menu = ViewStaffMenu.new
     else
-      @business.add_staff
+      @@business.add_staff
       return :break
     end
     menu.run

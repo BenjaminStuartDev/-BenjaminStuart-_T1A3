@@ -5,8 +5,7 @@ require_relative './menu'
 require_relative './view_menu_items_menu'
 # top level documentation
 class MenuItemSettingsMenu < Menu
-  def initialize(business)
-    @business = business
+  def initialize
     options = [
       { name: 'View Menu Items', value: 'View menu items' },
       { name: 'Add Menu Item', value: 'Add menu Item' },
@@ -19,10 +18,10 @@ class MenuItemSettingsMenu < Menu
     return :break if selection == :break
     case selection
     when 'View menu items'
-      menu = ViewMenuItemsMenu.new(@business)
+      menu = ViewMenuItemsMenu.new
       menu.run
     when 'Add menu Item'
-      @business.add_menu_item
+      @@business.add_menu_item
       return :break
     end
   end

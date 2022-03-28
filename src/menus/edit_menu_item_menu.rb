@@ -9,8 +9,7 @@ require './business'
 
 # top level documentation
 class EditMenuItemMenu < Menu
-  def initialize(menuitem, business)
-    @business = business
+  def initialize(menuitem)
     @menuitem = menuitem
     options = [
       { name: "Edit Name (#{@menuitem.name})", value: 'Edit Name' },
@@ -36,7 +35,7 @@ class EditMenuItemMenu < Menu
       menu = EditIngredientsMenu.new(@menuitem)
       menu.run
     else
-      @business.menu_items.delete(@menuitem)
+      @@business.menu_items.delete(@menuitem)
       puts 'Menu item has been deleted'
     end
     return :break

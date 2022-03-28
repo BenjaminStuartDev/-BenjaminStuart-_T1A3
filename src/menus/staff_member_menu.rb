@@ -8,8 +8,7 @@ require './validators'
 
 # top level documentation
 class StaffMemberMenu < Menu
-  def initialize(business, staff_member)
-    @business = business
+  def initialize(staff_member)
     @staff_member = staff_member
     options = [
       { name: 'Edit Name', value: 'Edit Name' },
@@ -25,7 +24,7 @@ class StaffMemberMenu < Menu
 
     case selection
     when 'Delete'
-      @business.staff.delete(@staff_member)
+      @@business.staff.delete(@staff_member)
       puts 'Staff member has been deleted'
       return :break
     when 'Edit Name'

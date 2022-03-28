@@ -6,9 +6,8 @@ require_relative './staff_member_menu'
 
 # top level documentation
 class ViewStaffMenu < Menu
-  def initialize(business)
-    @business = business
-    @staff = business.staff
+  def initialize
+    @staff = @@business.staff
     @options = create_options
     super('View Staff Menu', @options)
   end
@@ -24,7 +23,7 @@ class ViewStaffMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    menu = StaffMemberMenu.new(@business, selection)
+    menu = StaffMemberMenu.new(selection)
     menu.run
     @options = create_options
   end

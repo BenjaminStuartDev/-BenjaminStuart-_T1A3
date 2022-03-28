@@ -6,10 +6,9 @@ require_relative './view_menu_item_menu'
 
 # takes orders as an array containing menuitem objects
 class PlaceOrderMenu < Menu
-  def initialize(table, business)
+  def initialize(table)
     @table = table
-    @business = business
-    @menu_items = business.menu_items
+    @menu_items = @@business.menu_items
 
     options = @menu_items.each_with_index.map do |menuitem, index|
       { name: menuitem.name, value: index }

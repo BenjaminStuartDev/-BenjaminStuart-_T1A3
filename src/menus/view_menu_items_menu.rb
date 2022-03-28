@@ -6,15 +6,14 @@ require_relative './edit_menu_item_menu'
 
 # top level documentation
 class ViewMenuItemsMenu < Menu
-  def initialize(business)
-    @business = business
+  def initialize
     @options = create_options
 
     super('Settings: View Menu Items', @options)
   end
 
   def create_options
-    options = @business.menu_items.map do |menuitem|
+    options = @@business.menu_items.map do |menuitem|
       { name: menuitem.name, value: menuitem }
     end
     options << { name: 'Back', value: :break }
@@ -24,7 +23,7 @@ class ViewMenuItemsMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    menu = EditMenuItemMenu.new(selection, @business)
+    menu = EditMenuItemMenu.new(selection)
     menu.run
     @options = create_options
   end

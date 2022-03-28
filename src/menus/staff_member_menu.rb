@@ -6,8 +6,9 @@ require './staff'
 require './helpers'
 require './validators'
 
-# top level documentation
+# The StaffMemberMenu class represents the menu in which Managers can navigate the StaffMemberMenu
 class StaffMemberMenu < Menu
+  # initialises the class instance variable @staff_member and the options to be displayed to the user via TTY prompt
   def initialize(staff_member)
     @staff_member = staff_member
     options = [
@@ -19,6 +20,12 @@ class StaffMemberMenu < Menu
     super("Staff member #{@staff_member.name}", options)
   end
 
+  # handle_selection has been over written to handle the users menu selection.
+  #
+  # Selection 1: Delete - > Will delete the selected staff member (@staff_member)
+  # Selection 2: Edit Name - > Will launch the new staff members name prompt
+  # Selection 3: Edit Password - > will launch the new staf fmembers password prompt
+  # Selection 4: Back - > will return the user to the previous Menu
   def handle_selection(selection)
     return :break if selection == :break
 

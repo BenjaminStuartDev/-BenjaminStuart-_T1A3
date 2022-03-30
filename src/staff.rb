@@ -5,15 +5,16 @@ require_relative './helpers'
 # The Staff class represents the individual employees that belong to the business
 class Staff
   # sets the readable attributes for the object
-  attr_reader :name, :password
+  attr_reader :name, :password, :manager
 
   # initialises the class instance variables @name and @password for each Staff object
   #
   # @param name [String] name of the staff member
   # @param password [String] pasasword for the staff member
-  def initialize(name, password)
+  def initialize(name, password, manager)
     @name = name
     @password = password
+    @manager = manager
   end
 
   # defines the == operator so that objects can be compared
@@ -23,7 +24,7 @@ class Staff
 
   # defines the two hash operated so that objects can be converted to hashes
   def to_h
-    return { name: @name, password: @password }
+    return { name: @name, password: @password, manager: @manager}
   end
 
   # sets the class instance variable @name to new_name
@@ -33,6 +34,15 @@ class Staff
     @name = new_name
   end
 
+  # sets the class instance variable @manager to true
+  def make_manager
+    @manager = true
+  end
+
+  # sets the class instance variable @manager to false
+  def remove_manager
+    @manager = false
+  end
   # sets the class instance variable @password to new_password
   #
   # @param new_password [String] a string containing the new password for the Staff member

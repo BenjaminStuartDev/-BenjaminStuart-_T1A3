@@ -9,13 +9,28 @@ require_relative './table_list_menu'
 class MainMenu < Menu
   # Initialises the main menu options
   def initialize
-    super('Main Menu', [
-      { name: 'View Tables', value: 'viewtables' },
-      { name: 'Settings', value: 'Settings' },
-      { name: 'Logout', value: :break }
-    ])
+    if @@current_user.manager == true
+      lock = true
+    else 
+      lock = 'managers only'
+    end
+
+    super('Main Menu', create_options)
   end
 
+  def create_options
+    if @@current_user.manager ==true
+      options = [
+        { name: 'View Tables', value: 'viewtables' },
+        { name: 'Settings', value: 'Settings' },
+        { name: 'Logout', value: :break }
+      ]
+    else options = [
+      { name: 'View Tables', value: 'viewtables' },
+      { name: 'Logout', value: :break }
+      ]
+    end
+  end
   # handle_selection has been over written to handle the users menu selection.
   #
   # Selection 1: View Tables - > Will launch the TableListMenu

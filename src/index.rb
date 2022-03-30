@@ -20,8 +20,10 @@ else
 end
 
 loop do
-  next if login(business) == false
+  login_attempt, user = login(business)
+  next if login_attempt == false
 
+  Menu.current_user = user
   Menu.business = business
   main_menu = MainMenu.new
   main_menu.run

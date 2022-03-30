@@ -54,7 +54,7 @@ class Business
   def create_staff
     name = get_user_input('staff members name', EmptyValidator)
     password = get_user_input('staff members password', EmptyValidator)
-    Staff.new(name, password)
+    Staff.new(name, password, false)
   end
 
   # Returns the user input for menu item
@@ -122,7 +122,7 @@ class Business
     @cafe_name = parsed[:cafe_name]
     staff_arr = parsed[:staff]
     staff_arr.each do |staff|
-      @staff << Staff.new(staff[:name], staff[:password])
+      @staff << Staff.new(staff[:name], staff[:password], staff[:manager])
     end
     menuitems_arr = parsed[:menu_items]
     menuitems_arr.each do |menu_item|

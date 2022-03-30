@@ -6,6 +6,7 @@ require 'tty-prompt'
 class Menu
   # Sets the Menu class variable that is used to access the business object by all Menu subclasses
   @@business = nil
+  @@current_user = nil
   # Initialises the tty prompt
   #
   # @param menu_name [String] A string containing the name of the menu to be displayed
@@ -37,5 +38,10 @@ class Menu
   # self.business= is used to set the class attribute @@business outside of the class.
   def self.business=(business)
     @@business = business
+  end
+
+  def self.current_user=(user)
+    @@current_user = user
+    puts @@current_user.name
   end
 end

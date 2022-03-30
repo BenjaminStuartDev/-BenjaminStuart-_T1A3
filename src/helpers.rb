@@ -56,14 +56,18 @@ def login(business)
   login = TTY::Prompt.new
   username = login.ask('Please enter your username: ', required: true)
   password = login.mask('Please enter your password: ', required: true)
-  login_attempt = Staff.new(username, password)
+  login_attempt = Staff.new(username, password, false)
+  user = nil
   business.staff.each do |staff_member|
-    logged_in = true if staff_member == login_attempt
+    if staff_member == login_attempt
+      logged_in = true
+      user = staff_member
+    end
   end
   if logged_in == false
     puts 'Incorrect username or password'
   else
     puts 'Username and password is correct'
   end
-  return logged_in
+  return logged_in, user
 end

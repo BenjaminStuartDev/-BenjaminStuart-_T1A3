@@ -3,15 +3,18 @@
   "staff": [
     {
       "name": "Harry",
-      "password": "Voldemort"
+      "password": "Voldemort",
+      "manager": true
     },
     {
       "name": "Hermione",
-      "password": "Aloha"
+      "password": "Aloha",
+      "manager": false
     },
     {
       "name": "Ron",
-      "password": "Wormtail"
+      "password": "Wormtail",
+      "manager": false
     }
   ],
   "menu_items": [
@@ -29,42 +32,7 @@
     {
       "table_num": 20,
       "orders": [
-        {
-          "name": "Butter beer",
-          "price": 5.5,
-          "ingredients": [
-            "Butter",
-            "Beer",
-            "Magic"
-          ]
-        },
-        {
-          "name": "Butter beer",
-          "price": 5.5,
-          "ingredients": [
-            "Butter",
-            "Beer",
-            "Magic"
-          ]
-        },
-        {
-          "name": "Butter beer",
-          "price": 5.5,
-          "ingredients": [
-            "Butter",
-            "Beer",
-            "Magic"
-          ]
-        },
-        {
-          "name": "Butter beer",
-          "price": 5.5,
-          "ingredients": [
-            "Butter",
-            "Beer",
-            "Magic"
-          ]
-        }
+
       ]
     },
     {

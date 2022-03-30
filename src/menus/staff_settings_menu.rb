@@ -26,10 +26,10 @@ class StaffSettingsMenu < Menu
 
     if selection == 'View Staff'
       menu = ViewStaffMenu.new
+      menu.run
     else
       @@business.add_staff
       @@breaks = 1
     end
-    menu.run
   end
 end

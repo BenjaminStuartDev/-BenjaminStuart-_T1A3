@@ -28,7 +28,7 @@ class StaffSettingsMenu < Menu
       menu = ViewStaffMenu.new
     else
       @@business.add_staff
-      return :break
+      @@breaks = 1
     end
     menu.run
   end

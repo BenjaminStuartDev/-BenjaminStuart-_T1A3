@@ -49,7 +49,7 @@ class StaffMemberMenu < Menu
     when 'Delete'
       @@business.staff.delete(@staff_member)
       puts 'Staff member has been deleted'
-      return :break
+      @@breaks = 1
     when 'Edit Name'
       new_name = get_user_input('new staff members name', EmptyValidator)
       @staff_member.change_name(new_name)
@@ -57,10 +57,10 @@ class StaffMemberMenu < Menu
       puts 'name has been succesfully changed'
     when 'Make Manager Role'
       @staff_member.make_manager
-      return :break
+      @@breaks = 1
     when 'Remove Manager Role'
       @staff_member.remove_manager
-      return :break
+      @@breaks = 1
     else
       new_password = get_user_input('new staff members password', EmptyValidator)
       @staff_member.change_password(new_password)

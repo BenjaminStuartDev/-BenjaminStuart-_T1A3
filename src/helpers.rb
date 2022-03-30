@@ -71,3 +71,9 @@ def login(business)
   end
   return logged_in, user
 end
+
+def save_receipt(path, table)
+  file = File.open(path, 'w')
+  file.write(table)
+  file.close
+end

@@ -43,7 +43,7 @@ class EditIngredientsListMenu < Menu
         ingredients << get_user_input('ingredient name', EmptyValidator)
       end
       @menuitem.add_ingredients(ingredients)
-      return :break
+      @@breaks = 1
     else
       menu = EditIngredientMenu.new(@menuitem, selection)
       menu.run

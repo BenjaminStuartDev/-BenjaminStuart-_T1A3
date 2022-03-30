@@ -7,6 +7,7 @@ class Menu
   # Sets the Menu class variable that is used to access the business object by all Menu subclasses
   @@business = nil
   @@current_user = nil
+  @@breaks = 0
   # Initialises the tty prompt
   #
   # @param menu_name [String] A string containing the name of the menu to be displayed
@@ -23,9 +24,13 @@ class Menu
       selection = @prompt.select(@menu_name, @options, cycle: true, filter: true)
       break if handle_selection(selection) == :break
 
-      @@business.save('./saves/savefile.json') # saves changed information after every loop
       system('clear')
       system('cls')
+      @@business.save('./saves/savefile.json') # saves changed information after every loop
+      if @@breaks.positive?
+        @@breaks += -1
+        break
+      end
     end
   end
 

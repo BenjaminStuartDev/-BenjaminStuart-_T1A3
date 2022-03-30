@@ -4,6 +4,8 @@ require 'tty-prompt'
 require_relative './menu'
 require_relative './place_order_menu'
 require './menuitem'
+require 'io/console'
+require './helpers'
 
 # The OrderListMenu class represents the menu in which users can navigate the Orders a table has as well as
 # place and edit orders for a table
@@ -21,9 +23,9 @@ class OrderListMenu < Menu
       { name: menuitem.name, value: menuitem }
     end
     options << { name: 'Back', value: :break }
-    options.unshift({ name: 'Place new order', value: :new_order })
-    bill_total = sum_bill(@table.orders)
-    options.unshift({ name: "Bill total: $#{bill_total}", value: nil, disabled: '' })
+    options.unshift({ name: 'Place new order', value: :new_order }, { name: 'Process table', value: 'Tabulate' })
+    @bill_total = sum_bill(@table.orders)
+    options.unshift({ name: "Bill total: $#{@bill_total}", value: nil, disabled: '' })
   end
 
   # sum_bills returns bill_total and iterates of order which is an array of menu_items
@@ -47,12 +49,20 @@ class OrderListMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    if selection.is_a?(MenuItem)
+    case selection
+    when selection.is_a?(MenuItem)
       menu = ViewMenuItemMenu.new(@table, selection)
+      menu.run
+    when 'Tabulate'
+      puts @table.tabulate(@bill_total)
+      puts 'Press any character to continue: '
+      input = STDIN.getch # this pauses the program so that the bill is viewable
+      @table.orders = []
+      @@breaks = 2
     else
       menu = PlaceOrderMenu.new(@table)
+      menu.run
     end
-    menu.run
     # This is to ensure it recalculates bill total after items have been added to the table orders
     @options = create_options
   end

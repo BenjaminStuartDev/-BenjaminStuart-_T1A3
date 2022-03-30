@@ -1,9 +1,3 @@
-require 'tty-prompt'
-require './helpers'
-
-@prompt = TTY::Prompt.new
-
-name1 = @prompt.ask('Please enter your Name: ')
-name2 = @prompt.mask('Please enter your password: ')
-
-p name1, name2
+require 'tty-table'
+table = TTY::Table.new(%w[header1 header2], [%w[a1 a2], %w[b1 b2]])
+# puts table.render(:ascii)

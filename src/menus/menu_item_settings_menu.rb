@@ -30,7 +30,7 @@ class MenuItemSettingsMenu < Menu
       menu.run
     when 'Add menu Item'
       @@business.add_menu_item
-      return :break
+      @@breaks = 1
     end
   end
 end

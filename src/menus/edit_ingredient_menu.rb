@@ -31,11 +31,10 @@ class EditIngredientMenu < Menu
 
     if selection == 'Remove Ingredient'
       @menu_item.remove_ingredient(@ingredient)
-      return :break
     else
       new_name = get_user_input('ingredient name', EmptyValidator)
       @menu_item.ingredients.select { |s| s == @ingredient }.each { |s| s.replace(new_name) }
     end
-    return :break
+    @@breaks = 1
   end
 end

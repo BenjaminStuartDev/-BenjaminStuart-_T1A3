@@ -48,6 +48,6 @@ class EditMenuItemMenu < Menu
       @@business.menu_items.delete(@menuitem)
       puts 'Menu item has been deleted'
     end
-    return :break
+    @@breaks = 1
   end
 end

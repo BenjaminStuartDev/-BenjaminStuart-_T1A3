@@ -54,7 +54,7 @@ class Business
   def create_staff
     name = get_user_input('staff members name', EmptyValidator)
     password = get_user_input('staff members password', EmptyValidator)
-    return Staff.new(name, password)
+    Staff.new(name, password)
   end
 
   # Returns the user input for menu item
@@ -77,7 +77,7 @@ class Business
 
       ingredients << get_user_input('ingredient name', EmptyValidator)
     end
-    return MenuItem.new(name, price, ingredients)
+    MenuItem.new(name, price, ingredients)
   end
 
   def tables_setup
@@ -124,7 +124,7 @@ class Business
     staff_arr.each do |staff|
       @staff << Staff.new(staff[:name], staff[:password])
     end
-    menuitems_arr = parsed[:menu_item]
+    menuitems_arr = parsed[:menu_items]
     menuitems_arr.each do |menu_item|
       @menu_items << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
     end
@@ -135,10 +135,10 @@ class Business
         orders << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
       end
 
-      @tables << Table.new(table[:table_num], table[:orders])
+      @tables << Table.new(table[:table_num], orders)
     end
   end
-
+  
   # sets the cafe name to new_name
   #
   # @param new_name [String] a string containing the new name of the cafe
@@ -151,7 +151,7 @@ class Business
     #
     # @return cafe_name [String]
     def get_cafe_name
-      return get_user_input('Cafe name', EmptyValidator)
+      get_user_input('Cafe name', EmptyValidator)
     end
   end
 end

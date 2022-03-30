@@ -14,7 +14,7 @@
       "password": "Wormtail"
     }
   ],
-  "menu_item": [
+  "menu_items": [
     {
       "name": "Butter beer",
       "price": 5.5,
@@ -28,83 +28,149 @@
   "tables": [
     {
       "table_num": 20,
-      "orders": []
+      "orders": [
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        },
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        },
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        }
+      ]
     },
     {
       "table_num": 19,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 18,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 17,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 16,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 15,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 14,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 13,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 12,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 11,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 10,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 9,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 8,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 7,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 6,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 5,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 4,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 3,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 2,
-      "orders": []
+      "orders": [
+
+      ]
     },
     {
       "table_num": 1,
-      "orders": []
+      "orders": [
+
+      ]
     }
   ]
 }

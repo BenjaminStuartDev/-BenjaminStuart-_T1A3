@@ -21,6 +21,10 @@ class Menu
     loop do
       selection = @prompt.select(@menu_name, @options, cycle: true, filter: true)
       break if handle_selection(selection) == :break
+
+      @@business.save('./saves/savefile.json') # saves changed information after every loop
+      system("clear")
+      system("cls")
     end
   end
 

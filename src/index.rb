@@ -2,7 +2,6 @@
 
 require_relative './manager'
 require_relative './menuitem'
-require_relative './settingsinterface'
 require_relative './staff'
 require_relative './business'
 require 'tty-prompt'
@@ -24,7 +23,6 @@ Menu.business = business
 
 main_menu = MainMenu.new
 main_menu.run
-
 
 print business.cafe_name
 print business.staff

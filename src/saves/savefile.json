@@ -18,13 +18,38 @@
     }
   ],
   "menu_items": [
-
+    {
+      "name": "Butter beer",
+      "price": 5.5,
+      "ingredients": [
+        "Butter",
+        "Beer",
+        "Magic"
+      ]
+    }
   ],
   "tables": [
     {
       "table_num": 20,
       "orders": [
-
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        },
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        }
       ]
     },
     {

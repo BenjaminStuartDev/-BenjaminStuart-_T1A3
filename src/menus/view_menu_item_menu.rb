@@ -35,7 +35,7 @@ class ViewMenuItemMenu < Menu
     else
       @table.orders << @menu_item
       puts "#{@menu_item.name} has been added to table #{@table.table_num}'s order."
-      @@breaks = 1
+      @@breaks = 2
     end
   end
 end

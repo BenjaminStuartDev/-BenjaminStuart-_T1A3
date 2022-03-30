@@ -19,17 +19,10 @@ else
   business.load_save(save_path)
 end
 
-Menu.business = business
+loop do
+  next if login(business) == false
 
-main_menu = MainMenu.new
-main_menu.run
-
-print business.cafe_name
-print business.staff
-print business.tables
-print business.menu_items
-
-# First time setup
-
-# prompt = TTY::Prompt.new
-# prompt.select("Choose your destiny?", %w(Scorpion Kano Jax))
+  Menu.business = business
+  main_menu = MainMenu.new
+  main_menu.run
+end

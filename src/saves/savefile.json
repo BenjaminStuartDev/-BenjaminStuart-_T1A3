@@ -55,6 +55,15 @@
             "Beer",
             "Magic"
           ]
+        },
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
         }
       ]
     },

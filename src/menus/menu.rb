@@ -23,8 +23,8 @@ class Menu
       break if handle_selection(selection) == :break
 
       @@business.save('./saves/savefile.json') # saves changed information after every loop
-      system("clear")
-      system("cls")
+      system('clear')
+      system('cls')
     end
   end
 

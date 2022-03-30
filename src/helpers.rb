@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative './errors'
+require_relative './business'
+require_relative './staff'
 
 # returns the user input while handling input errors and input confirmation.
 #
@@ -23,7 +25,7 @@ def get_user_input(data_name, *validators)
     print e.message
     retry
   end
-  return user_input
+  user_input
 end
 
 # Returns confirmation in the form of 'Y' or 'N' from user input.
@@ -40,5 +42,28 @@ def get_confirmation(input)
     puts "Invalid input '#{confirmation}'. Please try again."
     retry
   end
-  return confirmation
+  confirmation
+end
+
+# Generates the login prompt and returns logged_in = true/false if username and password has a match
+#
+# @param business [Business] A Business object containing all information relevent to the business
+#
+# @return true or false [Boolean] if login was succesful or unsuccessful
+def login(business)
+  logged_in = false
+  puts 'Login Menu'
+  login = TTY::Prompt.new
+  username = login.ask('Please enter your username: ', required: true)
+  password = login.mask('Please enter your password: ', required: true)
+  login_attempt = Staff.new(username, password)
+  business.staff.each do |staff_member|
+    logged_in = true if staff_member == login_attempt
+  end
+  if logged_in == false
+    puts 'Incorrect username or password'
+  else
+    puts 'Username and password is correct'
+  end
+  return logged_in
 end

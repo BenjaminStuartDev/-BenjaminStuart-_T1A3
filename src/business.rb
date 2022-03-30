@@ -138,7 +138,7 @@ class Business
       @tables << Table.new(table[:table_num], orders)
     end
   end
-  
+
   # sets the cafe name to new_name
   #
   # @param new_name [String] a string containing the new name of the cafe

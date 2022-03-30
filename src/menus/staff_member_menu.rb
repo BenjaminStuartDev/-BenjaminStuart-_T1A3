@@ -11,13 +11,29 @@ class StaffMemberMenu < Menu
   # initialises the class instance variable @staff_member and the options to be displayed to the user via TTY prompt
   def initialize(staff_member)
     @staff_member = staff_member
-    options = [
-      { name: 'Edit Name', value: 'Edit Name' },
-      { name: 'Edit Password', value: 'Edit Password' },
-      { name: 'Delete', value: 'Delete' },
-      { name: 'Back', value: :break }
-    ]
-    super("Staff member #{@staff_member.name}", options)
+
+    super("Staff member #{@staff_member.name}", create_options)
+  end
+
+  def create_options
+    if @staff_member.manager == true
+      options = [
+        { name: 'Edit Name', value: 'Edit Name' },
+        { name: 'Edit Password', value: 'Edit Password' },
+        { name: 'Remove Manager Role', value: 'Remove Manager Role' },
+        { name: 'Remove', value: 'Remove' },
+        { name: 'Back', value: :break }
+      ]
+    else
+      options = [
+        { name: 'Edit Name', value: 'Edit Name' },
+        { name: 'Edit Password', value: 'Edit Password' },
+        { name: 'Make Manager Role', value: 'Make Manager Role' },
+        { name: 'Remove', value: 'Remove' },
+        { name: 'Back', value: :break }
+      ]
+    end
+    return options
   end
 
   # handle_selection has been over written to handle the users menu selection.
@@ -39,6 +55,12 @@ class StaffMemberMenu < Menu
       @staff_member.change_name(new_name)
       @menu_name = "Staff member #{new_name}"
       puts 'name has been succesfully changed'
+    when 'Make Manager Role'
+      @staff_member.make_manager
+      return :break
+    when 'Remove Manager Role'
+      @staff_member.remove_manager
+      return :break
     else
       new_password = get_user_input('new staff members password', EmptyValidator)
       @staff_member.change_password(new_password)

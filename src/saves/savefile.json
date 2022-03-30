@@ -9,12 +9,12 @@
     {
       "name": "Hermione",
       "password": "Aloha",
-      "manager": false
+      "manager": true
     },
     {
       "name": "Ron",
       "password": "Wormtail",
-      "manager": false
+      "manager": true
     }
   ],
   "menu_items": [

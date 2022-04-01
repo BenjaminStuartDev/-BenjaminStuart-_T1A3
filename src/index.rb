@@ -16,7 +16,7 @@ save_path = './saves/savefile.json'
 business = Business.new
 business.add_first_manager(name.chomp, password.chomp) unless name.nil?
 if File.exist?(save_path) == false
-  business.setup_pos
+  business.setup_poss
 else
   business.load_save(save_path)
 end

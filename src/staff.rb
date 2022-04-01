@@ -22,7 +22,7 @@ class Staff
   def ==(other)
     return false if other.class != Staff
 
-    return @name == other.name && @password == other.password && @manager == other.manager
+    return @name == other.name && @password == other.password
   end
 
   # defines the t0 hash operator so that objects can be converted to hashes

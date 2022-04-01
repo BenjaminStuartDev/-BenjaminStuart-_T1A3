@@ -25,7 +25,6 @@ describe Staff do
     it 'returns false when compared with a Staff object with non-equivalent attributes' do
       expect(staff.==(Staff.new('NameX', 'Password', false))).to eq(false)
       expect(staff.==(Staff.new('Name', 'PasswordX', false))).to eq(false)
-      expect(staff.==(Staff.new('Name', 'Password', true))).to eq(false)
     end
     it 'returns false when comapred to a non MenuItem object' do
       expect(staff.==('staff')).to eq(false)

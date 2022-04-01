@@ -14,6 +14,12 @@ class EditMenuItemMenu < Menu
   # @param menu_item [MenuItem] menu item object
   def initialize(menuitem)
     @menuitem = menuitem
+    @options = create_options
+    super("#{@menuitem.name} Settings", @options)
+  end
+
+  # The create_options method generates a list of ingredients to be passed into the TTY prompt as options
+  def create_options
     options = [
       { name: "Edit Name (#{@menuitem.name})", value: 'Edit Name' },
       { name: "Edit Price ($#{@menuitem.price})", value: 'Edit Price' },
@@ -21,7 +27,6 @@ class EditMenuItemMenu < Menu
       { name: 'Delete', value: 'Delete' },
       { name: 'Back', value: :break }
     ]
-    super("#{@menuitem.name} Settings", options)
   end
 
   # handle_selection has been over written to handle the users menu selection.
@@ -38,15 +43,17 @@ class EditMenuItemMenu < Menu
     when 'Edit Name'
       new_name = get_user_input('new menu item name', EmptyValidator)
       @menuitem.change_name(new_name)
+      @@breaks = 1
     when 'Edit Price'
       new_price = Float(get_user_input('new menu item price', EmptyValidator, NumberValidator))
       @menuitem.change_price(new_price)
     when 'Edit Ingredients'
       menu = EditIngredientsListMenu.new(@menuitem)
       menu.run
-    else
+    when 'Delete'
       @@business.menu_items.delete(@menuitem)
-      puts 'Menu item has been deleted'
+      @@breaks = 1
     end
+    @options = create_options
   end
 end

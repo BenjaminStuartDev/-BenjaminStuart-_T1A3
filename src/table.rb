@@ -28,7 +28,7 @@ class Table
     @orders.each do |menuitem|
       table_contents << [menuitem.name, "$#{menuitem.price}"]
     end
-    discount = Float(get_user_input('Table Discount', EmptyValidator, NumberValidator, PercentageValidator))
+    discount = Float(get_user_input('Table Discount (as a percentage)', EmptyValidator, NumberValidator, PercentageValidator))
     discount_total = total_bill * discount / 100
     if discount.positive?
       table_contents << ['Discount %: ', "#{discount}%"]

@@ -15,7 +15,7 @@ require 'rainbow'
 def get_user_input(data_name, *validators)
   print "Please enter your #{data_name}: "
   begin
-    user_input = gets.chomp
+    user_input = STDIN.gets.chomp
     validators.each do |validator|
       validator.call(user_input, data_name)
     end
@@ -38,7 +38,7 @@ end
 def get_confirmation(input)
   begin
     print input
-    confirmation = gets.chomp.upcase
+    confirmation = STDIN.gets.chomp.upcase
     raise(InvalidInputError) unless %w[Y N].include?(confirmation)
   rescue InvalidInputError => _e
     puts "Invalid input '#{confirmation}'. Please try again."

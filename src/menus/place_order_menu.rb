@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'tty-prompt'
 require_relative './menu'
 require_relative './view_menu_item_menu'
 require_relative './place_order_type_menu'
+require 'tty-prompt'
 
-# The PlaceOrderMenu class represents the menu in which users can place an order for a table
+# The PlaceOrderMenu class represents the menu in which users can select what type of order they wish to place
 class PlaceOrderMenu < Menu
   # initialiseses the @table and @menu_items class instance variables
-  # @param table [Table] an object representing a hospitality Table
+  # @param table [Table] an object representing a cafe Table
   def initialize(table)
     @table = table
     @menu_items = @@business.menu_items
@@ -23,8 +23,9 @@ class PlaceOrderMenu < Menu
 
   # handle_selection has been over written to handle the users menu selection.
   #
-  # Selection n: menu_item n - > Will launch the ViewMenuItemMenu for the selected menu_item
-  # Selection n + 1: Back - > will return the user to the previous Menu
+  # Selection 1: Place Food Order - > Will launch the PlaceOrderTypeMenu with the drink: false parameter
+  # Selection 2: Place Drink Order - > Will launch the PlaceOrderTypeMenu with the drink: true parameter
+  # Selection 3: Back - > will return the user to the previous Menu
   def handle_selection(selection)
     return :break if selection == :break
 

@@ -13,8 +13,10 @@ require 'tty-prompt'
 
 # The Business class represents the cafe.
 class Business
+  # sets the readable attributes for the class
   attr_reader :cafe_name, :staff, :menu_items, :tables
 
+  # sets the class variables @cafe_name [String], @staff [Array], @menu_items [Array], @tables [Array]
   def initialize
     @cafe_name = nil
     @staff = []

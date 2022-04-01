@@ -14,6 +14,7 @@ class ViewMenuItemMenu < Menu
     super("Menu Item: #{menu_item.name}", create_options)
   end
 
+  # The create_options method generates a list of menu-item options to be passed into the TTY prompt
   def create_options
     options = [
       { name: "price: $#{@menu_item.price}", value: 'price', disabled: '' },

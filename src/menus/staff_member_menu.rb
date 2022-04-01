@@ -15,6 +15,7 @@ class StaffMemberMenu < Menu
     super("Staff member #{@staff_member.name}", create_options)
   end
 
+  # The create_options method generates a list of menu-item options to be passed into the TTY prompt
   def create_options
     if @staff_member.manager == true
       options = [
@@ -41,7 +42,8 @@ class StaffMemberMenu < Menu
   # Selection 1: Delete - > Will delete the selected staff member (@staff_member)
   # Selection 2: Edit Name - > Will launch the new staff members name prompt
   # Selection 3: Edit Password - > will launch the new staf fmembers password prompt
-  # Selection 4: Back - > will return the user to the previous Menu
+  # Selection 4: Make Manager Role or Remove Manager Role - > will switch the manager role status for @staff_member
+  # Selection 5: Back - > will return the user to the previous Menu
   def handle_selection(selection)
     return :break if selection == :break
 

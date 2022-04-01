@@ -13,11 +13,10 @@ class OrderListMenu < Menu
   # initialises the @table class instance variable as well as the Menu's options
   def initialize(table)
     @table = table
-    options = create_options
-    super("Table #{table.table_num} Orders", options)
+    super("Table #{table.table_num} Orders", create_options)
   end
 
-  # The create_options method generates a list of options to be displayed ot the user.
+  # The create_options method generates a list of options to be displayed to the user.
   def create_options
     options = @table.orders.map do |menuitem|
       { name: menuitem.name, value: menuitem }
@@ -42,10 +41,11 @@ class OrderListMenu < Menu
   end
 
   # handle_selection has been over written to handle the users menu selection.
-  #
-  # Selection n: ordered menu item 'n' - > Will launch the ViewMenuItemMenu
-  # Selection n + 1: place an order for a new menuitem - > Will launch the PlaceOrderMenu
-  # Selection n + 3: Back - > will return the user to the previous Menu
+  # Selection 1: Bill total: $x - > will display the tables current bill total as a disabled option
+  # Selection 2: Place new order: - > will launch the PlaceOrderMenu
+  # Selection 3: Process Table - > will tabulate the tables receipt and print it to the screen.
+  # Selection n + 3: ordered menu item 'n' - > Will launch the ViewMenuItemMenu
+  # Selection n + 4: Back - > will return the user to the previous Menu
   def handle_selection(selection)
     return :break if selection == :break
 

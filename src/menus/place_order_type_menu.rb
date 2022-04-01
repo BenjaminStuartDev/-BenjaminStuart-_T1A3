@@ -4,10 +4,11 @@ require 'tty-prompt'
 require_relative './menu'
 require_relative './view_menu_item_menu'
 
-# The PlaceOrderMenu class represents the menu in which users can place an order for a table
+# The PlaceOrderMenu class represents the menu in which users can search and place a drink or food order for a table
 class PlaceOrderTypeMenu < Menu
   # initialiseses the @table and @menu_items class instance variables
   # @param table [Table] an object representing a hospitality Table
+  # @param drink: [Boolean] a boolean that represents the drink state of the menu item
   def initialize(table, drink:)
     @table = table
     @drink = drink
@@ -15,6 +16,7 @@ class PlaceOrderTypeMenu < Menu
     super('Menu item list', create_options)
   end
 
+  # The create_options method generates a list of menu-item options to be passed into the TTY prompt
   def create_options
     options = []
     if @drink

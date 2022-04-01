@@ -4,9 +4,11 @@ require 'tty-prompt'
 
 # The Menu class represents the generic Menu prompt that is inherited by all Menu subclasses
 class Menu
-  # Sets the Menu class variable that is used to access the business object by all Menu subclasses
-  @@business = nil
+  # Sets the Menu class variables @@business that is used to access the business object by all Menu subclasses
+  @@business = nil 
+  # Sets the Menu class variable @@current_user to store the currently logged in user to access manager perms by Menu subclasses
   @@current_user = nil
+  # Sets the number of times a menu should break for.
   @@breaks = 0
   # Initialises the tty prompt
   #
@@ -18,7 +20,7 @@ class Menu
     @prompt = TTY::Prompt.new
   end
 
-  # the run method is used to begin the menu loop
+  # the run method is used to begin the menu loop and will break out of the menu until @@breaks == 0
   def run
     loop do
       selection = @prompt.select(@menu_name, @options, cycle: true, filter: true, per_page: 10)
@@ -45,6 +47,7 @@ class Menu
     @@business = business
   end
 
+  # self.current_user= is used to set the attribute @@current_user outside of the class.
   def self.current_user=(user)
     @@current_user = user
     puts Rainbow("Welcome #{@@current_user.name}!").white

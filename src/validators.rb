@@ -19,7 +19,7 @@ NumberValidator = proc { |user_input, data_name|
 # InalidInputError Proc for validating against non percentage inputs
 PercentageValidator = proc { |user_input, data_name|
   begin
-    Float(user_input).between?(0, 100)
+    raise StandardError unless Float(user_input).between?(0, 100)
   rescue StandardError
     raise InvalidInputError, "#{data_name} must be a percentage between 0% and 100%.\nPlease re-enter #{data_name}: "
   end

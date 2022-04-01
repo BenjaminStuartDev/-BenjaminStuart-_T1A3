@@ -9,6 +9,7 @@ describe MenuItem do
     expect(menuitem).not_to be_nil
     expect(menuitem).to be_an_instance_of MenuItem
   end
+
   describe '#initialise' do
     it 'initialises MenuItem with name [String], price [Float], ingredients [Array] and drink [Boolean]' do
       expect(menuitem.name).to eq('meal1')
@@ -17,6 +18,7 @@ describe MenuItem do
       expect(menuitem.drink).to eq(false)
     end
   end
+
   describe '#==' do
     it 'returns true when compared with a MenuItem object with equivalent attributes' do
       expect(menuitem.==(MenuItem.new('meal1', 13.0, %w[ingredient1 ingredient2], false))).to eq(true)
@@ -37,7 +39,8 @@ describe MenuItem do
       expect(menuitem.to_h).to be_an_instance_of Hash
     end
     it 'assigns key values in name, price, ingredients, format' do
-      expect(menuitem.to_h).to eq({ name: 'meal1', price: 13.0, ingredients: %w[ingredient1 ingredient2], drink: false })
+      expect(menuitem.to_h).to eq({ name: 'meal1', price: 13.0, ingredients: %w[ingredient1 ingredient2],
+                                    drink: false })
     end
   end
 

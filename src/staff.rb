@@ -20,6 +20,8 @@ class Staff
 
   # defines the == operator so that objects can be compared
   def ==(other)
+    return false if other.class != Staff
+
     return @name == other.name && @password == other.password
   end
 
@@ -44,6 +46,7 @@ class Staff
   def remove_manager
     @manager = false
   end
+
   # sets the class instance variable @password to new_password
   #
   # @param new_password [String] a string containing the new password for the Staff member

@@ -24,7 +24,7 @@ class MenuItem
   def ==(other)
     return false if other.class != MenuItem
 
-    return @name == other.name && @price == other.price && @ingredients == other.ingredients
+    return @name == other.name && @price == other.price && @ingredients == other.ingredients && @drink == other.drink
   end
 
   # defines the two hash operated so that objects can be converted to hashes

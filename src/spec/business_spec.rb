@@ -11,7 +11,7 @@ describe Business do
     expect(business).to be_an_instance_of Business
   end
 
-  describe '#initialises Business with "empty" class variables' do
+  describe '#initialise' do
     it 'sets @cafe_name to nil' do
       expect(business.cafe_name).to eq(nil)
     end

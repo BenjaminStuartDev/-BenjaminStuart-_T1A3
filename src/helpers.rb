@@ -3,7 +3,7 @@
 require_relative './errors'
 require_relative './business'
 require_relative './staff'
-require 'io/console'
+require 'io/console' #note that the gets in this method rewrites the gets in ruby. Hence all gets look like: STDIN.gets
 require 'rainbow'
 
 # returns the user input while handling input errors and input confirmation.
@@ -52,6 +52,7 @@ end
 # @param business [Business] A Business object containing all information relevent to the business
 #
 # @return true or false [Boolean] if login was succesful or unsuccessful
+# @return logged in user [Staff] if login was succesful
 def login(business)
   logged_in = false
   puts Rainbow('Login Menu').blue
@@ -67,7 +68,7 @@ def login(business)
     end
   end
   if logged_in == false
-    puts Rainbow('Incorrect username or password. ').red + '(Press any character to continue)'
+    puts "#{Rainbow('Incorrect username or password. ').red}(Press any character to continue)"
     input = STDIN.getch
   else
     puts Rainbow('Username and password is correct').green
@@ -75,8 +76,8 @@ def login(business)
   return logged_in, user
 end
 
-def save_receipt(path, table)
-  file = File.open(path, 'w')
-  file.write(table)
-  file.close
+# clears the terminal
+def clear_terminal
+  system('clear')
+  system('cls')
 end

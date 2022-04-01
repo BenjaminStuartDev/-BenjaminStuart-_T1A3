@@ -25,7 +25,7 @@ class Business
   end
 
   # Initialises the POS system by prompting the user to set up their business.
-  # Adds cafe_name to Business, adds staff to Business and adds menu items to Business.
+  # Adds cafe_name to Business, adds staff to Business, sets the tables for the business and adds menu items to Business.
   def setup_pos
     print Rainbow("Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n").blue
     @cafe_name = Business.get_cafe_name
@@ -82,7 +82,7 @@ class Business
     name = get_user_input('menu item name', EmptyValidator)
     price = Float(get_user_input('menu item price', EmptyValidator, NumberValidator))
     type = get_confirmation('Is the menu item a drink? (Y/N): ')
-    type = !(type == 'N')
+    type = (type != 'N')
     ingredients = []
     loop do
       response = get_confirmation('Would you like to add an ingredient to the menu items ingredients (Y/N): ')
@@ -93,6 +93,7 @@ class Business
     MenuItem.new(name, price, ingredients, type)
   end
 
+  # Sets up empty tables for the business
   def tables_setup
     @tables = []
     tables = Integer(get_user_input('number of tables', EmptyValidator, NumberValidator))

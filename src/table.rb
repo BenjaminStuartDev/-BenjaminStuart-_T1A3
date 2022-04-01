@@ -8,9 +8,9 @@ require './validators'
 class Table
   # sets the readable attributes for the object
   attr_reader :table_num
-  attr_accessor :orders, :discount
+  attr_accessor :orders
 
-  # initialises the class instance variables @table_num and @orders
+  # initialises the class variables @table_num and @orders
   #
   # @param table_num [Integer] number ID for the table
   # @param orders [Array] an array of menuitems placed under the given table ID
@@ -19,6 +19,10 @@ class Table
     @orders = orders
   end
 
+  # tabulates a Tables bill in a receipt like format and prompts for potential discounts.
+  # 
+  # @param total_bill [Float] the total_bill for a table
+  # @returns the table render of the bill [TTY-Table] a tty table containing the tabulated receipt
   def tabulate(total_bill)
     table_contents = []
     @orders.each do |menuitem|
@@ -37,7 +41,7 @@ class Table
     return table.render(:ascii)
   end
 
-  # defines the two hash operated so that objects can be converted to hashes
+  # defines the to hash operator so that objects can be converted to hashes
   def to_h
     orders = []
     unless @orders.empty?

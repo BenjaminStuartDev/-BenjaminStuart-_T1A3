@@ -11,8 +11,8 @@ class StaffMemberMenu < Menu
   # initialises the class instance variable @staff_member and the options to be displayed to the user via TTY prompt
   def initialize(staff_member)
     @staff_member = staff_member
-
-    super("Staff member #{@staff_member.name}", create_options)
+    @options = create_options
+    super("Staff member #{@staff_member.name}", @options)
   end
 
   # The create_options method generates a list of menu-item options to be passed into the TTY prompt
@@ -29,7 +29,7 @@ class StaffMemberMenu < Menu
       options = [
         { name: 'Edit Name', value: 'Edit Name' },
         { name: 'Edit Password', value: 'Edit Password' },
-        { name: 'Make Manager Role', value: 'Make Manager Role' },
+        { name: 'Make Manager', value: 'Make Manager Role' },
         { name: 'Remove', value: 'Remove' },
         { name: 'Back', value: :break }
       ]
@@ -59,13 +59,12 @@ class StaffMemberMenu < Menu
       puts 'name has been succesfully changed'
     when 'Make Manager Role'
       @staff_member.make_manager
-      @@breaks = 1
     when 'Remove Manager Role'
       @staff_member.remove_manager
-      @@breaks = 1
     else
       new_password = get_user_input('new staff members password', EmptyValidator)
       @staff_member.change_password(new_password)
     end
+    @options = create_options
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './business'
-require './staff'
+require 'io/console'
 
 describe Business do
   let(:business) { Business.new }
@@ -11,51 +11,74 @@ describe Business do
     expect(business).to be_an_instance_of Business
   end
 
-  describe '#add_staff_prompt' do
-    it 'Adds a staff member to the staff array' do
-      allow(business).to receive(:gets).and_return('Y', 'John', 'Y', 'Password', 'Y', 'N')
-      business.add_staff_prompt
-      expect(business.staff).to eq([Staff.new('John', 'Password')])
+  describe '#initialises Business with "empty" class variables' do
+    it 'sets @cafe_name to nil' do
+      expect(business.cafe_name).to eq(nil)
     end
-    it 'Allows multiple staff to be added at the same time' do
-      allow(business).to receive(:gets).and_return('Y', 'John', 'Y', 'Password1', 'Y', 'Y', 'Wick', 'Y', 'Password2',
-                                                   'Y', 'N')
-      business.add_staff_prompt
-      expect(business.staff).to eq([Staff.new('John', 'Password1'), Staff.new('Wick', 'Password2')])
-    end
-    it 'Allows no staff to be added' do
-      allow(business).to receive(:gets).and_return('N')
-      business.add_staff_prompt
+    it 'sets @staff to empty array' do
       expect(business.staff).to eq([])
+    end
+    it 'sets @menu_items to empty array' do
+      expect(business.menu_items).to eq([])
+    end
+    it 'sets @tables to empty array' do
+      expect(business.tables).to eq([])
+    end
+  end
+
+  describe '#add_first_manager' do
+    it 'adds a new Staff object to the @staff attribute of business' do
+      business.add_first_manager('name', 'password')
+      expect(business.staff[0]).not_to eq(nil)
     end
   end
 
   describe '#create_staff' do
-    it 'returns a new staff object' do
-      allow(business).to receive(:gets).and_return('John', 'Y', 'Password', 'Y')
-      expect(business.create_staff).to eq(Staff.new('John', 'Password'))
-    end
-  end
-
-  describe '#get_cafe_name' do
-    it 'returns cafe_name based on user input' do
-      allow(Business).to receive(:gets).and_return('Blues Cafe', 'Y')
-      expect(Business.get_cafe_name).to eq('Blues Cafe')
-    end
-  end
-
-  describe '#menu_setup' do
-    it 'pushes a new MenuItem object to the global menu_items array' do
-      allow(business).to receive(:gets).and_return('Y', 'foodname', 'Y', '10', 'Y', 'Y', 'ingredient1', 'Y', 'Y', 'ingredient2', 'Y', 'N', 'N')
-      business.menu_setup
-      expect(business.menu_items).to eq([MenuItem.new('foodname', 10.0, %w[ingredient1 ingredient2])])
+    it 'returns a new Staff object' do
+      allow(STDIN).to receive(:gets).and_return('name', 'Y', 'Password', 'Y')
+      expect(business.create_staff).to be_an_instance_of Staff
     end
   end
 
   describe '#create_menu_item' do
-    it 'returns a MenuItem object with foodname [String], price [Float] and ingredients [Array]' do
-      allow(business).to receive(:gets).and_return('foodname', 'Y', '10', 'Y', 'Y', 'ingredient1', 'Y', 'Y', 'ingredient2', 'Y', 'N')
-      expect(business.create_menu_item).to eq(MenuItem.new('foodname', 10.0, %w[ingredient1 ingredient2]))
+    it 'returns a new MenuItem object' do
+      allow(STDIN).to receive(:gets).and_return('Name', 'Y', '10', 'Y', 'Y', 'Ingredient', 'N')
+      expect(business.create_menu_item).to be_an_instance_of MenuItem
+    end
+    it 'returns a new MenuItem object with drink = true when drink = true' do
+      allow(STDIN).to receive(:gets).and_return('Name', 'Y', '10', 'Y', 'Y', 'Ingredient', 'N')
+      expect(business.create_menu_item.drink).to eq(true)
+    end
+    it 'creates a new MenuItem object with drink = false when drink = false' do
+      allow(STDIN).to receive(:gets).and_return('Name', 'Y', '10', 'Y', 'N', 'Ingredient', 'N')
+      expect(business.create_menu_item.drink).to eq(false)
+    end
+  end
+
+  describe '#tables_setup' do
+    it 'Sets up an empty @staff array with correct length' do
+      allow(STDIN).to receive(:gets).and_return('10', 'Y')
+      business.tables_setup
+      expect(business.tables.length).to eq(10)
+    end
+    it 'Sets up an empty @staff array containing Staff objects' do
+      allow(STDIN).to receive(:gets).and_return('10', 'Y')
+      business.tables_setup
+      expect(business.tables[0]).to be_an_instance_of Table
+    end
+  end
+
+  describe '#change_cafe_name' do
+    it 'sets the @cafe_name to new_cafe_name' do
+      business.change_cafe_name('new_cafe_name')
+      expect(business.cafe_name).to eq('new_cafe_name')
+    end
+  end
+
+  describe '#get_cafe_name' do
+    it 'returns the cafe_name based on the users input' do
+      allow(STDIN).to receive(:gets).and_return('Blues Cafe', 'Y')
+      expect(Business.get_cafe_name).to eq('Blues Cafe')
     end
   end
 end

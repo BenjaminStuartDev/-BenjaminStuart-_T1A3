@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'tty-prompt'
+require './helpers'
 
 # The Menu class represents the generic Menu prompt that is inherited by all Menu subclasses
 class Menu
@@ -26,8 +27,7 @@ class Menu
       selection = @prompt.select(@menu_name, @options, cycle: true, filter: true, per_page: 10)
       break if handle_selection(selection) == :break
 
-      system('clear')
-      system('cls')
+      clear_terminal
       @@business.save('./saves/savefile.json') # saves changed information after every loop
       if @@breaks.positive?
         @@breaks += -1

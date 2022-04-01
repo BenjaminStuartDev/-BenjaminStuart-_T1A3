@@ -3,6 +3,8 @@
 require_relative './errors'
 require_relative './business'
 require_relative './staff'
+require 'io/console'
+require 'rainbow'
 
 # returns the user input while handling input errors and input confirmation.
 #
@@ -52,7 +54,7 @@ end
 # @return true or false [Boolean] if login was succesful or unsuccessful
 def login(business)
   logged_in = false
-  puts 'Login Menu'
+  puts Rainbow('Login Menu').blue
   login = TTY::Prompt.new
   username = login.ask('Please enter your username: ', required: true)
   password = login.mask('Please enter your password: ', required: true)
@@ -65,9 +67,10 @@ def login(business)
     end
   end
   if logged_in == false
-    puts 'Incorrect username or password'
+    puts Rainbow('Incorrect username or password. ').red + '(Press any character to continue)'
+    input = STDIN.getch
   else
-    puts 'Username and password is correct'
+    puts Rainbow('Username and password is correct').green
   end
   return logged_in, user
 end

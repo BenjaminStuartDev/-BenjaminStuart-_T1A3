@@ -29,7 +29,7 @@ class StaffMemberMenu < Menu
         { name: 'Edit Name', value: 'Edit Name' },
         { name: 'Edit Password', value: 'Edit Password' },
         { name: 'Make Manager Role', value: 'Make Manager Role' },
-        { name: 'Remove', value: 'Delete' },
+        { name: 'Remove', value: 'Remove' },
         { name: 'Back', value: :break }
       ]
     end

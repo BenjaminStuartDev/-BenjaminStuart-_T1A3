@@ -6,6 +6,7 @@ require_relative './helpers'
 require_relative './validators'
 require_relative './menuitem'
 require_relative './table'
+require 'rainbow'
 require 'json'
 require 'fileutils'
 require 'tty-prompt'
@@ -24,7 +25,7 @@ class Business
   # Initialises the POS system by prompting the user to set up their business.
   # Adds cafe_name to Business, adds staff to Business and adds menu items to Business.
   def setup_pos
-    print "Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n"
+    print Rainbow("Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n").blue
     @cafe_name = Business.get_cafe_name
     prompt = TTY::Prompt.new
     loop do
@@ -41,6 +42,14 @@ class Business
       end
     end
     create_save('./saves/savefile.json')
+  end
+
+  # Creates a new Staff object with role manager using parameters name and password
+  #
+  # @param name [String] a string containing the first managers name
+  # @param password [String] a string containing the first managers password
+  def add_first_manager(name, password)
+    @staff << Staff.new(name, password, true)
   end
 
   # Prompts the user to create a new staff member and updates global @staff array.

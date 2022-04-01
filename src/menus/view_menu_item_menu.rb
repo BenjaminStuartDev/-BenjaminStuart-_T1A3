@@ -43,9 +43,10 @@ class ViewMenuItemMenu < Menu
     when 'Add menu item'
       @table.orders << @menu_item
       puts "#{@menu_item.name} has been added to table #{@table.table_num}'s order."
+      @@breaks = 2
     else
       @table.orders.delete(@menu_item)
+      @@breaks = 2
     end
-    @@breaks = 2
   end
 end

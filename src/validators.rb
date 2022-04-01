@@ -15,3 +15,11 @@ NumberValidator = proc { |user_input, data_name|
     raise InvalidInputError, "#{data_name} must be a number\nPlease re-enter #{data_name}: "
   end
 }
+
+PercentageValidator = proc { |user_input, data_name|
+  begin
+    Float(user_input).between?(0, 100)
+  rescue StandardError
+    raise InvalidInputError, "#{data_name} must be a percentage between 0% and 100%.\nPlease re-enter #{data_name}: "
+  end
+}

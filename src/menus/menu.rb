@@ -13,7 +13,7 @@ class Menu
   # @param menu_name [String] A string containing the name of the menu to be displayed
   # @param options [Array] An array of hashes containing all option keys and their selection values to be displayed by ttp prompt
   def initialize(menu_name, options)
-    @menu_name = menu_name
+    @menu_name = Rainbow(menu_name).blue
     @options = options
     @prompt = TTY::Prompt.new
   end
@@ -47,6 +47,6 @@ class Menu
 
   def self.current_user=(user)
     @@current_user = user
-    puts @@current_user.name
+    puts Rainbow("Welcome #{@@current_user.name}!").white
   end
 end

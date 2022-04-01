@@ -21,7 +21,7 @@ class Menu
   # the run method is used to begin the menu loop
   def run
     loop do
-      selection = @prompt.select(@menu_name, @options, cycle: true, filter: true)
+      selection = @prompt.select(@menu_name, @options, cycle: true, filter: true, per_page: 10)
       break if handle_selection(selection) == :break
 
       system('clear')

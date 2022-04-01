@@ -50,8 +50,8 @@ class OrderListMenu < Menu
     return :break if selection == :break
 
     case selection
-    when selection.is_a?(MenuItem)
-      menu = ViewMenuItemMenu.new(@table, selection)
+    when :new_order
+      menu = PlaceOrderMenu.new(@table)
       menu.run
     when 'Tabulate'
       puts @table.tabulate(@bill_total)
@@ -60,8 +60,9 @@ class OrderListMenu < Menu
       @table.orders = []
       @@breaks = 2
     else
-      menu = PlaceOrderMenu.new(@table)
+      menu = ViewMenuItemMenu.new(@table, selection)
       menu.run
+
     end
     # This is to ensure it recalculates bill total after items have been added to the table orders
     @options = create_options

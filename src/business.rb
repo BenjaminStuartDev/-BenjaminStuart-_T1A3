@@ -64,12 +64,14 @@ class Business
     @menu_items << create_menu_item
   end
 
-  # Creates a new menu_item object using user input for name, price and ingredients
+  # Creates a new menu_item object using user input for name, price, type (drink or food) and ingredients
   #
   # @return menu item object [MenuItem]
   def create_menu_item
     name = get_user_input('menu item name', EmptyValidator)
     price = Float(get_user_input('menu item price', EmptyValidator, NumberValidator))
+    type = get_confirmation('Is the menu item a drink? (Y/N): ')
+    type = !(type == 'N')
     ingredients = []
     loop do
       response = get_confirmation('Would you like to add an ingredient to the menu items ingredients (Y/N): ')
@@ -77,7 +79,7 @@ class Business
 
       ingredients << get_user_input('ingredient name', EmptyValidator)
     end
-    MenuItem.new(name, price, ingredients)
+    MenuItem.new(name, price, ingredients, type)
   end
 
   def tables_setup
@@ -126,13 +128,13 @@ class Business
     end
     menuitems_arr = parsed[:menu_items]
     menuitems_arr.each do |menu_item|
-      @menu_items << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
+      @menu_items << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients], menu_item[:drink])
     end
     tables_arr = parsed[:tables]
     tables_arr.each do |table|
       orders = []
       table[:orders].each do |menu_item|
-        orders << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients])
+        orders << MenuItem.new(menu_item[:name], menu_item[:price], menu_item[:ingredients], menu_item[:drink])
       end
 
       @tables << Table.new(table[:table_num], orders)

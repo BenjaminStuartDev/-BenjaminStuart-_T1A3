@@ -1,5 +1,5 @@
 {
-  "cafe_name": "Hats Cafe",
+  "cafe_name": "Hogwarts",
   "staff": [
     {
       "name": "Harry",
@@ -14,7 +14,7 @@
     {
       "name": "Ron",
       "password": "Wormtail",
-      "manager": true
+      "manager": false
     }
   ],
   "menu_items": [
@@ -25,44 +25,63 @@
         "Butter",
         "Beer",
         "Magic"
-      ]
+      ],
+      "drink": true
+    },
+    {
+      "name": "Hagrids Pie",
+      "price": 11.0,
+      "ingredients": [
+        "Apple",
+        "Pastry",
+        "Sugar",
+        "Cinnamon"
+      ],
+      "drink": false
+    },
+    {
+      "name": "Chocolate Frog",
+      "price": 6.0,
+      "ingredients": [
+        "Chocolate",
+        "Magic"
+      ],
+      "drink": false
     }
   ],
   "tables": [
     {
-      "table_num": 10,
-      "orders": [
-
-      ]
-    },
-    {
-      "table_num": 9,
-      "orders": [
-
-      ]
-    },
-    {
-      "table_num": 8,
-      "orders": [
-
-      ]
-    },
-    {
-      "table_num": 7,
-      "orders": [
-
-      ]
-    },
-    {
-      "table_num": 6,
-      "orders": [
-
-      ]
-    },
-    {
       "table_num": 5,
       "orders": [
-
+        {
+          "name": "Hagrids Pie",
+          "price": 11.0,
+          "ingredients": [
+            "Apple",
+            "Pastry",
+            "Sugar",
+            "Cinnamon"
+          ]
+        },
+        {
+          "name": "Butter beer",
+          "price": 5.5,
+          "ingredients": [
+            "Butter",
+            "Beer",
+            "Magic"
+          ]
+        },
+        {
+          "name": "Hagrids Pie",
+          "price": 11.0,
+          "ingredients": [
+            "Apple",
+            "Pastry",
+            "Sugar",
+            "Cinnamon"
+          ]
+        }
       ]
     },
     {

@@ -11,13 +11,20 @@ class ViewMenuItemMenu < Menu
   def initialize(table, menu_item)
     @table = table
     @menu_item = menu_item
+    super("Menu Item: #{menu_item.name}", create_options)
+  end
+
+  def create_options
     options = [
-      { name: "price: $#{menu_item.price}", value: 'price', disabled: '' },
-      { name: "Add #{menu_item.name} to order?", value: 'Add menu item' },
-      { name: "View #{menu_item.name} ingredients?", value: 'ingredients' },
-      { name: 'Back', value: :break }
+      { name: "price: $#{@menu_item.price}", value: 'price', disabled: '' },
+      { name: "Add #{@menu_item.name} to order?", value: 'Add menu item' },
+      { name: "View #{@menu_item.name} ingredients?", value: 'ingredients' }
     ]
-    super("Menu Item: #{menu_item.name}", options)
+    if @table.orders.include?(@menu_item)
+      options << { name: "Remove existing #{@menu_item.name} from order", value: 'Remove Existing' }
+    end
+    options << { name: 'Back', value: :break }
+    return options
   end
 
   # handle_selection has been over written to handle the users menu selection.
@@ -29,13 +36,16 @@ class ViewMenuItemMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    if selection == 'ingredients'
+    case selection
+    when 'ingredients'
       menu = ViewIngredientsMenu.new(@menu_item)
       menu.run
-    else
+    when 'Add menu item'
       @table.orders << @menu_item
       puts "#{@menu_item.name} has been added to table #{@table.table_num}'s order."
-      @@breaks = 2
+    else
+      @table.orders.delete(@menu_item)
     end
+    @@breaks = 2
   end
 end

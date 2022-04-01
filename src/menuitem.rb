@@ -5,17 +5,19 @@ require './helpers'
 # The MenuItem class represents the items on the cafe's menu
 class MenuItem
   # sets the readable attributes for the object
-  attr_reader :name, :price, :ingredients
+  attr_reader :name, :price, :ingredients, :drink
 
-  # initialises class instance variables @name, @price and @ingredients
+  # initialises class instance variables @name, @price, @ingredients, drink
   #
   # @param name [String] name of the MenuItem
   # @param price [Float] price of the MenuItem
-  # @ingredients [Array] a list of ingredients [String]
-  def initialize(name, price, ingredients)
+  # @param ingredients [Array] a list of ingredients [String]
+  # @param drink [Boolean] true if the item is a drink item
+  def initialize(name, price, ingredients, drink)
     @name = name
     @price = price
     @ingredients = ingredients
+    @drink = drink
   end
 
   # defines the == operator so that objects can be compared
@@ -25,7 +27,7 @@ class MenuItem
 
   # defines the two hash operated so that objects can be converted to hashes
   def to_h
-    return { name: @name, price: @price, ingredients: @ingredients }
+    return { name: @name, price: @price, ingredients: @ingredients, drink: @drink }
   end
 
   # Adds ingredients to the class instance variable @ingredients

@@ -3,22 +3,30 @@
 require 'tty-prompt'
 require_relative './menu'
 require_relative './view_menu_item_menu'
-require_relative './place_order_type_menu'
 
 # The PlaceOrderMenu class represents the menu in which users can place an order for a table
-class PlaceOrderMenu < Menu
+class PlaceOrderTypeMenu < Menu
   # initialiseses the @table and @menu_items class instance variables
   # @param table [Table] an object representing a hospitality Table
-  def initialize(table)
+  def initialize(table, drink:)
     @table = table
+    @drink = drink
     @menu_items = @@business.menu_items
+    super('Menu item list', create_options)
+  end
 
-    options = [
-      { name: 'Place Food Order', value: 'food order' },
-      { name: 'Place Drink Order', value: 'drink order' },
-      { name: 'Back', value: :break }
-    ]
-    super('Menu item list', options)
+  def create_options
+    options = []
+    if @drink
+      @menu_items.each_with_index do |menuitem, index|
+        options << { name: menuitem.name, value: index } if menuitem.drink
+      end
+    else
+      @menu_items.each_with_index do |menuitem, index|
+        options << { name: menuitem.name, value: index } unless menuitem.drink
+      end
+    end
+    options << { name: 'Back', value: :break }
   end
 
   # handle_selection has been over written to handle the users menu selection.
@@ -28,11 +36,7 @@ class PlaceOrderMenu < Menu
   def handle_selection(selection)
     return :break if selection == :break
 
-    if selection == 'food order'
-      menu = PlaceOrderTypeMenu.new(@table, drink: false)
-    else
-      menu = PlaceOrderTypeMenu.new(@table, drink: true)
-    end
+    menu = ViewMenuItemMenu.new(@table, @menu_items[selection])
     menu.run
   end
 end

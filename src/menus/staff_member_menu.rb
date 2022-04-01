@@ -46,7 +46,7 @@ class StaffMemberMenu < Menu
     return :break if selection == :break
 
     case selection
-    when 'Delete'
+    when 'Remove'
       @@business.staff.delete(@staff_member)
       puts 'Staff member has been deleted'
       @@breaks = 1

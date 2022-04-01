@@ -11,6 +11,7 @@ class Staff
   #
   # @param name [String] name of the staff member
   # @param password [String] pasasword for the staff member
+  # @param manager [Boolean] true or false depending on if the Staff member is a manager
   def initialize(name, password, manager)
     @name = name
     @password = password
@@ -24,7 +25,7 @@ class Staff
 
   # defines the two hash operated so that objects can be converted to hashes
   def to_h
-    return { name: @name, password: @password, manager: @manager}
+    return { name: @name, password: @password, manager: @manager }
   end
 
   # sets the class instance variable @name to new_name

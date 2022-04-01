@@ -32,7 +32,7 @@ class BusinessSettingsMenu < Menu
     when 'Change No. Tables'
       @@business.tables_setup
     else
-      @@business.setup_pos
+      @@business.reset_pos
     end
   end
 end

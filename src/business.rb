@@ -27,7 +27,6 @@ class Business
   # Initialises the POS system by prompting the user to set up their business.
   # Adds cafe_name to Business, adds staff to Business, sets the tables for the business and adds menu items to Business.
   def setup_pos
-    reset_pos
     print Rainbow("Hello and thank you for using Cafe POS V1! \nWe are now going to setup your business.\n").blue
     @cafe_name = Business.get_cafe_name
     prompt = TTY::Prompt.new
@@ -47,7 +46,7 @@ class Business
     create_save('./saves/savefile.json')
   end
 
-  # resets all information stored in the business and deletes any save file
+  # Resets all information stored in the business and deletes any save file
   def reset_pos
     File.delete('./saves/savefile.json') if File.exist?('./saves/savefile.json')
     name = get_user_input("What is the new owners name?")
@@ -56,6 +55,7 @@ class Business
     @staff = [Staff.new(name, password, true)]
     @menu_items = []
     @tables = []
+    setup_pos
   end
   # Creates a new Staff object with role manager using parameters name and password
   #

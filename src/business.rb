@@ -49,8 +49,8 @@ class Business
   # Resets all information stored in the business and deletes any save file
   def reset_pos
     File.delete('./saves/savefile.json') if File.exist?('./saves/savefile.json')
-    name = get_user_input("What is the new owners name?")
-    password = get_user_input("What is the new owners password")
+    name = get_user_input("new owners name?")
+    password = get_user_input("new owners password")
     @cafe_name = nil
     @staff = [Staff.new(name, password, true)]
     @menu_items = []

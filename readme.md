@@ -88,7 +88,7 @@ Each test should:
 
 During the development of this application I used the Test Driven Development process with the goal of producing a usable, reliable, scalable and functional program. 
 
-To achieve this I used RSPEC (See more here: https://rspec.info/) to test methods and classes to ensure that errors are appropriately raised and the program does not break if unexpected inputs are used. In addition to this my tests have an emphasis on ensuring that the methods and classes are working as intended by delivering the correct outputs.
+To achieve this I used RSPEC (See more here: https://rspec.info/) to unit test methods and classes to ensure that errors are appropriately raised and the program does not break if unexpected inputs are used. In addition to this my tests have an emphasis on ensuring that the methods and classes are working as intended by delivering the correct outputs.
 
 In addition to this I also utilized a range of manual tests during the development phase to ensure the application was scalable with large data sets and usable - that is straight forward in how it should be used. 
 

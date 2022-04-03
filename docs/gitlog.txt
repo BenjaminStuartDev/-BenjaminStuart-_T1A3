@@ -1,0 +1,222 @@
+benjamin@Benjamins-MacBook-Pro src % git log
+commit e5aeac534f133c3f81b0ab781e9b13d3fa8113ed (HEAD -> master, origin/master)
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Apr 3 08:41:38 2022 +1000
+
+    Final src commit
+
+commit 40d1b72e6e6a026d35e9dbccdb8bb2756b5edbb1
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sat Apr 2 09:48:57 2022 +1000
+
+    completed all code x 1
+
+commit 5f406e012845d230edf35f3a7b9e95477e8931fc
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sat Apr 2 09:46:22 2022 +1000
+
+    bug fixed the pos setup in the business settings
+
+commit 506b8d2cd0dcaecd5d806048a059b40cb970481b
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sat Apr 2 09:16:42 2022 +1000
+
+    completed all tests
+
+commit dbd88910f14c89fc8ce672ed7ac87c80f53e53ec
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sat Apr 2 08:37:40 2022 +1000
+
+    completed MenuItem testing
+
+commit dfd1f2552388efb52596f45e9b1ea081b3e2cf67
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sat Apr 2 07:55:12 2022 +1000
+
+    completed rspec for business
+
+commit 9c1230f4efdf7d36d502d4c58c63a9930cb5224c
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 14:47:47 2022 +1000
+
+    fixed bug in  == method in Staff
+
+commit 6e00275484eb1fa3106e8a79dac4ca7a85e38aeb
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 14:32:13 2022 +1000
+
+    Proof read menu comments
+
+commit 200c8c361c3dd01dce3b0e817bc53e2fc8c5f988
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 13:55:25 2022 +1000
+
+    recommit
+
+commit 1aae820254dbba41e92fae2db7c1a22ae6ef3c73
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 13:37:50 2022 +1000
+
+    attempt 2.5 at changing order_list_menu.rb name
+
+commit 9e704aa69326efe76faa4cadeed2399ef107d416
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 13:34:15 2022 +1000
+
+    attempt 2 at changing order_list_menu.rb name
+
+commit 111e0cb31563009df501e6fcc4375222a48db368
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 13:32:23 2022 +1000
+
+    Attempted to rename order_list_menu.rb
+
+commit b5c85bfe40ab04bc755e156124010f78147e82b4
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 13:15:44 2022 +1000
+
+    started bash script
+
+commit e2f2f8967772b434f9f44f4ac065cea0468b94d9
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Apr 1 10:57:00 2022 +1000
+
+    implemented delete order from table functionality
+
+commit 14b6fd4020cb065c0991a78bd1023341a4a7b992
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Thu Mar 31 09:00:30 2022 +1000
+
+    Push before presentation
+
+commit c33b4ef3aa5258fd5fa2ad8975a6c9b676035b02
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 17:04:32 2022 +1000
+
+    Fixed breaks
+
+commit 603bb67287ac6a8d78e7020a9aceb2a5cd99cf7c
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 16:58:10 2022 +1000
+
+    implemented @@breaks in Menu to break multiple menus at once
+
+commit 1220eb2d3916d0de3dccbc74d3bc75a1b1d5a758
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 15:34:09 2022 +1000
+
+    added the make/remove manager permission options in the staff member edit menus
+
+commit 271f1b348b4dd76e63205ccefbc9f88ea8e95237
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 15:15:45 2022 +1000
+
+    implemented permissions for managers
+
+commit ec4ecdc6703051337400e8c693aac917be559e4e
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 14:39:09 2022 +1000
+
+    Implemented login menu
+
+commit a7984b5ad4e270229df3c157d0c2ba511cde7cd3
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Wed Mar 30 13:24:36 2022 +1000
+
+    implemented save on all changes made in pos
+
+commit 56ecde23def457dce7ae4956642e748216702158
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 15:23:23 2022 +1000
+
+    Commented all of the main classes
+
+commit 0ef852eb0cbfc1512642d9189c3be2625e35b9b2
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 15:07:15 2022 +1000
+
+    refactored menu classes and fixed all comments
+
+commit ddd4bfb9e70ae15ff43a2e98b0f23883ddbe4e59
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 13:11:12 2022 +1000
+
+    Gave Menu the class variable @@business
+
+commit 71824c704962439ae278100b02f0122a939bf0f6
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 13:00:45 2022 +1000
+
+    Prior to refactoring Menu class
+
+commit 54ba85b506f8d99a8d053d675564f487f8e74e38
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 12:43:58 2022 +1000
+
+    completed business settings and menu settings
+
+commit 90cef311495083c3a20ae594cf20f48339b5c088
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 10:10:02 2022 +1000
+
+    implemented the staff member menu
+
+commit a7b7d9630f312e8a48fcc3e9219b1d16ac8bf52f
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 09:02:40 2022 +1000
+
+    implemented the settings menu class
+
+commit a62c247d99729c788ba4ebfba107d4e45c1f7a8f
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Mon Mar 28 08:30:20 2022 +1000
+
+    Fixed add order so that orders made are no longer menu options
+
+commit 65d721cb50442cb28c8ecfce12a6882cac021a32
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Mar 27 16:11:06 2022 +1000
+
+    Implemented place order menu class
+
+commit 63228af8135e99ca8ff5e6363632f3309c391bff
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Mar 27 15:51:08 2022 +1000
+
+    Implemented order_list and table_list menu classes
+
+commit 996fc23bb2ffc5a3c807b203c0224c6570d4401e
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Mar 27 14:35:30 2022 +1000
+
+    completed load_save function & restructured menu class
+
+commit 335c6bb7ee5108273d944736601f173b60118d20
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Mar 27 13:27:46 2022 +1000
+
+    added Menu class to manage the Menus
+
+commit 6be2412999facc60f27af3db9e94e94a1b36c915
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Sun Mar 27 11:20:28 2022 +1000
+
+    Added 'tty-prompt' gem and reconfigured #setup-pos
+
+commit 10dd99c5571a19fc2e8e15a8d1b23e91b6f88048
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Fri Mar 25 16:38:52 2022 +1000
+    Implemented set_cafe_name feature
+    Implemented set_cafe_name feature
+
+commit de75f9635213cc9cf3c894b43c8c9cc7a05d590f
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Thu Mar 24 11:30:32 2022 +1000
+
+    Added rspec gem
+
+commit b4ca0c38839e347fe3917d667719241749cc2480
+Author: Benjamin stuart <Benjamin.stuart001@outlook.com>
+Date:   Thu Mar 24 11:15:51 2022 +1000
+
+    Initialising Repo

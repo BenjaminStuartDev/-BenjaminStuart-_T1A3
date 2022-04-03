@@ -1,0 +1,87 @@
+{
+  "cafe_name": "Cafe",
+  "staff": [
+    {
+      "name": "Ben",
+      "password": "S",
+      "manager": true
+    },
+    {
+      "name": "Ben",
+      "password": "s",
+      "manager": false
+    }
+  ],
+  "menu_items": [
+    {
+      "name": "sdf",
+      "price": 4.0,
+      "ingredients": [
+        "3dfs"
+      ],
+      "drink": true
+    }
+  ],
+  "tables": [
+    {
+      "table_num": 10,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 9,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 8,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 7,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 6,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 5,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 4,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 3,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 2,
+      "orders": [
+
+      ]
+    },
+    {
+      "table_num": 1,
+      "orders": [
+
+      ]
+    }
+  ]
+}
